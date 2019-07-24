@@ -1,0 +1,122 @@
+
+        
+    
+           <h3>Chercher un livre</h3>
+           <br><br>
+           <div class="card " >
+            <form [formGroup]="rechercheform">
+                <div class="row">
+        
+                    <div class="form-group col-md-3">
+                      <label class="lab">Titre</label>
+                      <input type="text" class="form-control" formControlName="titre"  >
+                     
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label >Auteur</label>
+                      <input type="text" class="form-control" formControlName="auteur">
+                    
+                    </div>
+              <div class="form-group col-md-3">
+                  <label >Sélectionner une catégorie </label>
+                  <select class="form-control" formControlName="categorie" >
+                    <option>Romans</option>
+                    <option>Comics</option>
+                    <option>Livres de cuisine </option>
+                    <option>livres de jeunesses</option>
+                  </select>
+                  </div>
+                  <div class="form-group col-md-3">
+
+                  <button type="submit" class="btn btn-primary"   (click)="recherchelivre()" style="margin-top: 9.5%">Lancer la recherche</button>
+                  </div>
+              </div>
+</form>
+
+
+
+
+
+</div>
+<div *ngIf="displaylist">
+          <!--Card-->
+          <div class="col-md-12" >
+
+              <div class="card-columns cols-2">
+                  <div class="card">
+                    <div class="row">
+                      <div class="col-md-9">
+                    <div style="position: left"></div><img src="/src/assets/img/avatars/1.jpg "> User
+                  </div>
+                  <div class="col-md-3">
+                    <div>Echange</div>
+</div>
+
+                  </div>
+                    <br><br>
+                    <div class="card-body">
+                      <div class="row">
+                <div class="col-md-6">
+                        <img src="/src/assets/img/avatars/1.jpg ">
+                      </div>
+                      <div class="col-md-6">
+                 <p> titre: hla hla</p>
+                 <p> Auteur: foulen</p>
+                <p> Description : un ma livre!</p>
+                </div>
+              </div>
+              <button class="btn btn-primary" type="submit" style="margin-left: 50%">Demander</button>
+              
+              </div>
+              
+              </div>
+              </div>
+              </div>
+
+    <div class="col-md-12">
+
+<div class="card-columns cols-2">
+    <div class="card">
+      <div class="card-body">
+          <div class="row">
+              <div class="col-md-6">
+                      <img src="/src/assets/img/happrypotter.jpg ">
+                    </div>
+                    <div class="col-md-6">
+
+   <p> titre: Harry Potter</p>
+   <p> Auteur: flen</p>
+   <p> Description : un bon livre!</p>
+   </div>
+   </div>
+<div class="card-footer">publiée par User2</div>
+</div>
+</div>
+</div>
+
+<div class="card-columns cols-2">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+  <div class="col-md-6">
+          <img src="/src/assets/img/avatars/1.jpg ">
+        </div>
+        <div class="col-md-6">
+   <p> titre: kteb</p>
+   <p> Auteur: ayoub</p>
+  <p> Description : livre!</p>
+  </div>
+</div>
+<div class="card-footer" >publiée par User3</div>
+
+</div>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+             

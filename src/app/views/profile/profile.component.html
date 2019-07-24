@@ -1,0 +1,193 @@
+<!-- Show user data when logged in -->
+<div class="row" *ngIf="authService.userData as user">
+  <div class="col-md-12">
+    <div class="media"> <img class="align-self-start mr-5 img-thumbnail rounded-circle"
+        src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}" alt="{{user.displayName}}">
+      <div class="media-body">
+        <h1>Hello: <strong>{{user.nom}}</strong></h1>
+        <p>User ID: <strong>{{user.uid}}</strong></p>
+        <p>Email: <strong>{{user.email}}</strong></p>
+        <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngFor="let pub of list">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          Categorie
+        </div>
+        <div class="col-md-4">
+
+          {{pub.categorie}}
+
+        </div>
+        <div class="col-md-4">
+
+          <button type="submit" class="btn btn-success px-1"> Modifier </button>
+          <br>
+          <br>
+
+        </div>
+
+
+
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          Auteur
+        </div>
+        <div class="col-md-4">
+
+          {{pub.auteur}}
+
+        </div>
+        <div class="col-md-4">
+
+          <button type="submit" class="btn btn-success px-1"> Modifier </button>
+          <br> <br>
+
+
+
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          Titre
+        </div>
+        <div class="col-md-4">
+
+          {{pub.titrelivre}}
+
+        </div>
+        <div class="col-md-4">
+
+          <button type="submit" class="btn btn-success px-1"> Modifier </button>
+
+          <br> <br>
+        </div>
+
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          Edition
+        </div>
+        <div class="col-md-4">
+
+          {{pub.edition}}
+
+        </div>
+
+        <div class="col-md-4">
+
+          <button type="submit" class="btn btn-success px-1"> Modifier </button>
+          <br> <br>
+
+        </div>
+
+
+      </div>
+    <div class="row">
+      <div class="col-md-4">
+        Adresse 
+      </div>
+      <div class="col-md-4">
+
+        {{pub.adresse}}
+
+      </div>
+      <div class="col-md-4">
+
+        <button type="submit" class="btn btn-success px-1"> Modifier </button>
+        <br> <br>
+      </div>
+
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        Langues
+      </div>
+      <div class="col-md-4">
+
+        {{pub.langue}}
+
+      </div>
+
+      <div class="col-md-4">
+
+        <button type="submit" class="btn btn-success px-1 px-1"> Modifier </button>
+        <br> <br>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        Adresse </div>
+      <div class="col-md-4">
+
+        {{pub.adresse}}
+
+      </div>
+
+      <div class="col-md-4">
+
+        <button type="submit" class="btn btn-success px-1"> Modifier </button>
+        <br> <br>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        Code postale
+      </div>
+      <div class="col-md-4">
+
+        {{pub.code_postale}}
+
+      </div>
+
+      <div class="col-md-4">
+
+        <button type="submit" class="btn btn-success px-1 "> Modifier </button>
+        <br> <br>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        Type d'annonce </div>
+      <div class="col-md-4">
+
+        {{pub.type_annonce}}
+
+      </div>
+
+      <div class="col-md-4">
+
+        <button type="submit" class="btn btn-success px-1"> Modifier </button>
+        <br><br>
+
+      </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+    
+            <button type="submit" class="btn btn-danger px-4" (click)="delete()"> Supprimer la publication</button>
+    
+          </div>
+        </div>
+  </div>
+  
+  </div>
+</div>
+
