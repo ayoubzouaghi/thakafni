@@ -1,0 +1,32 @@
+<div *ngIf="lists!=null">
+
+<div class="modal-header">
+        <h4 class="modal-title">Les details du publication</h4>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+            <div class="row">
+                    <div class="col-md-4">
+                  <img style="width: 75%;" src="../assets/exemple.jpg"></div>
+                  <div class="col-md-8">
+                  <h5 class="card-title">{{lists.titrelivre}} </h5>
+                  <div class="card-text">
+                      <p>Auteur :  {{lists.auteur}}</p>
+                    <p>Langue : {{lists.langue}}</p>
+                    <p>Catégorie : {{lists.categorie}}</p>
+                    <p>Adresse : {{lists.adresse}}</p>
+                    <p>Edition du livre : {{lists.edition}}</p>
+
+                    <p>Description : {{lists.description}}</p>
+                    <p>Code postale : {{lists.code_postale}}</p>
+                    <p>Ville : {{lists.ville}}</p>
+
+                </div>
+              </div>
+                </div>
+              </div>
+                <div class="card-footer bg-transparent border-info footer-text">dernière modification le 25 juin 2019</div>
+</div>

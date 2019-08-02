@@ -10,7 +10,7 @@ export const environment = {
     authDomain: "thakafni-d87de.firebaseapp.com",
     databaseURL: "https://thakafni-d87de.firebaseio.com",
     projectId: "thakafni-d87de",
-    storageBucket: "",
+    storageBucket: "thakafni-d87de.appspot.com",
     messagingSenderId: "551015393475",
     appId: "1:551015393475:web:a7e67d295574809a"
   }

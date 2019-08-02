@@ -55,6 +55,12 @@ import { ProfileComponent } from './views/profile/profile.component';
 import { BooksService } from './services/books/books.service';
 import { PublicationService } from './services/publication/publication.service';
 import { ConfirmationComponent } from './views/confirmation/confirmation.component';
+import { EditProfilPictureModalComponent } from './edit-profil-picture-modal/edit-profil-picture-modal.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { EditProfilCoordonneeModalComponent } from './edit-profil-coordonnee-modal/edit-profil-coordonnee-modal.component';
+import { DeletePublicationModalComponent } from './delete-publication-modal/delete-publication-modal.component';
+import { PublicatinDetailsModalComponent } from './publicatin-details-modal/publicatin-details-modal.component';
+import { UpdatePublicationModalComponent } from './update-publication-modal/update-publication-modal.component';
 
 @NgModule({
   imports: [
@@ -76,6 +82,7 @@ import { ConfirmationComponent } from './views/confirmation/confirmation.compone
     FormsModule,
     ReactiveFormsModule,
     ChartsModule,
+    NgbModalModule
     
   ],
   declarations: [
@@ -90,8 +97,14 @@ import { ConfirmationComponent } from './views/confirmation/confirmation.compone
     RechercheComponent,
     ContactComponent,
     ProfileComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    EditProfilPictureModalComponent,
+    EditProfilCoordonneeModalComponent,
+    DeletePublicationModalComponent,
+    PublicatinDetailsModalComponent,
+    UpdatePublicationModalComponent
   ],
+  entryComponents: [EditProfilPictureModalComponent,EditProfilCoordonneeModalComponent,DeletePublicationModalComponent,UpdatePublicationModalComponent,PublicatinDetailsModalComponent],
   providers: [AuthService,BooksService,PublicationService],
   bootstrap: [AppComponent]
 })

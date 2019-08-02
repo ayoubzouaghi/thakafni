@@ -1,193 +1,56 @@
 <!-- Show user data when logged in -->
-<div class="row" *ngIf="authService.userData as user">
-  <div class="col-md-12">
-    <div class="media"> <img class="align-self-start mr-5 img-thumbnail rounded-circle"
-        src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}" alt="{{user.displayName}}">
-      <div class="media-body">
-        <h1>Hello: <strong>{{user.nom}}</strong></h1>
-        <p>User ID: <strong>{{user.uid}}</strong></p>
-        <p>Email: <strong>{{user.email}}</strong></p>
-        <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>
-      </div>
-    </div>
-  </div>
+<div class="row">
+<div class="col-md-2">
+  <img src="../assets/avatar2.png" class="profile-img">
+  <button class="btn btn-default edit-picture-profile" (click)="openEditPictureModal()">Modifier</button>
+ 
 </div>
-<div *ngFor="let pub of list">
-  <div class="card">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-md-4">
-          Categorie
-        </div>
-        <div class="col-md-4">
-
-          {{pub.categorie}}
-
-        </div>
-        <div class="col-md-4">
-
-          <button type="submit" class="btn btn-success px-1"> Modifier </button>
-          <br>
-          <br>
-
-        </div>
-
-
-
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          Auteur
-        </div>
-        <div class="col-md-4">
-
-          {{pub.auteur}}
-
-        </div>
-        <div class="col-md-4">
-
-          <button type="submit" class="btn btn-success px-1"> Modifier </button>
-          <br> <br>
-
-
-
-        </div>
-
-      </div>
-
-      <div class="row">
-        <div class="col-md-4">
-          Titre
-        </div>
-        <div class="col-md-4">
-
-          {{pub.titrelivre}}
-
-        </div>
-        <div class="col-md-4">
-
-          <button type="submit" class="btn btn-success px-1"> Modifier </button>
-
-          <br> <br>
-        </div>
-
-
-      </div>
-
-      <div class="row">
-        <div class="col-md-4">
-          Edition
-        </div>
-        <div class="col-md-4">
-
-          {{pub.edition}}
-
-        </div>
-
-        <div class="col-md-4">
-
-          <button type="submit" class="btn btn-success px-1"> Modifier </button>
-          <br> <br>
-
-        </div>
-
-
-      </div>
-    <div class="row">
-      <div class="col-md-4">
-        Adresse 
-      </div>
-      <div class="col-md-4">
-
-        {{pub.adresse}}
-
-      </div>
-      <div class="col-md-4">
-
-        <button type="submit" class="btn btn-success px-1"> Modifier </button>
-        <br> <br>
-      </div>
-
-
-    </div>
-
-    <div class="row">
-      <div class="col-md-4">
-        Langues
-      </div>
-      <div class="col-md-4">
-
-        {{pub.langue}}
-
-      </div>
-
-      <div class="col-md-4">
-
-        <button type="submit" class="btn btn-success px-1 px-1"> Modifier </button>
-        <br> <br>
-      </div>
-
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        Adresse </div>
-      <div class="col-md-4">
-
-        {{pub.adresse}}
-
-      </div>
-
-      <div class="col-md-4">
-
-        <button type="submit" class="btn btn-success px-1"> Modifier </button>
-        <br> <br>
-      </div>
-
-    </div>
-
-    <div class="row">
-      <div class="col-md-4">
-        Code postale
-      </div>
-      <div class="col-md-4">
-
-        {{pub.code_postale}}
-
-      </div>
-
-      <div class="col-md-4">
-
-        <button type="submit" class="btn btn-success px-1 "> Modifier </button>
-        <br> <br>
-      </div>
-
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        Type d'annonce </div>
-      <div class="col-md-4">
-
-        {{pub.type_annonce}}
-
-      </div>
-
-      <div class="col-md-4">
-
-        <button type="submit" class="btn btn-success px-1"> Modifier </button>
-        <br><br>
-
-      </div>
-
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-    
-            <button type="submit" class="btn btn-danger px-4" (click)="delete()"> Supprimer la publication</button>
-    
+<div class="card col-md-6" *ngIf="authService.userData as user">
+    <div class="card-header bg-transparent">
+        <div class="row">
+      <h1>Ayoub Zouaghi</h1>
+      <div class="icons" style="margin-top: 10px;">
+          <img src="../assets/edit-interface-symbol-of-pencil-outline.png" class="edit-icon"  (click)="openEditCoordonneeModal()">
           </div>
-        </div>
-  </div>
-  
-  </div>
+          </div>
+    </div>
+    <div class="card-body">
+      <p>Votre email :&nbsp; {{user.email}}</p>
+      <p>Votre adresse :&nbsp; {{user.nom}}</p>
+      <p>Votre numéro de téléphone : 22-043-492</p>
+    </div>
 </div>
+</div>
+<div *ngFor="let list of lists">
 
+
+
+      <div class="card border-info mb-3 col-md-8">
+        <div class="card-header bg-transparent border-info">
+          <div class="row">
+          <div class="publication-type-design">
+            {{list.type_annonce}}
+          </div>
+          <div class="icons">
+          <img src="../assets/edit-interface-symbol-of-pencil-outline.png" class="edit-icon" (click)="openUpdatePubModal()">
+          <img src="../assets/recycle-bin.png" class="delete-icon" (click)="openDeleteModal()"></div>
+        </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+          <img style="width: 75%;" src="../assets/exemple.jpg"></div>
+          <div class="col-md-8">
+          <h5 class="card-title">{{list.titrelivre}} - {{list.auteur}}</h5>
+          <div class="card-text">
+            <p>Langue : {{list.langue}}</p>
+            <p>Catégorie : {{list.categorie}}</p>
+            <p>Adresse : {{list.adresse}}</p>
+           <a (click)="openPubDetailmodal()">Voir les détails</a>
+        </div>
+      </div>
+        </div>
+      </div>
+        <div class="card-footer bg-transparent border-info footer-text">dernière modification le 25 juin 2019</div>
+      </div>
+    </div>

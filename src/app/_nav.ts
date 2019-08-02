@@ -54,7 +54,12 @@ export const navItems: NavData[] = [
     icon: 'icon-cursor',
 
   },
-  
+  {
+    name: 'Contact',
+    url : '/contact',
+    icon: 'icon-cursor',
+  }
+ 
   
     
      

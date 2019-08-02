@@ -6,8 +6,8 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
 import { Observable, of } from 'rxjs';
 import { User } from '../../Model/User.model';
 import { Router } from '@angular/router';
-import { AngularFireDatabase } from '@angular/fire/database';
-
+import { AngularFireDatabase, AngularFireList} from '@angular/fire/database';
+import { Upload } from '../../Model/Upload.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,10 @@ export class AuthService {
   userCollection: AngularFirestoreCollection<User>
   user: Observable<User[]>;
   userData: any;
+  private basePath:string = '/uploads';
+  uploads: AngularFireList<Upload[]>;
 
+  
 
   constructor(private firestore: AngularFirestore,
 
@@ -30,7 +33,7 @@ export class AuthService {
 
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        this.userData = user;
+        this.userData = User;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
       } else {
@@ -113,8 +116,9 @@ export class AuthService {
   }
 
   getuser() {
-    this.userData = this.firestore.collection('user');
-    return this.userData;
+    this.userData =this.firestore.collection('user').snapshotChanges();
+    console.log(this.userData)
+    return this.userData
   }
 
   makeEmailToken(length) {
@@ -127,5 +131,68 @@ export class AuthService {
     return result;
   }
 
+
+
+
+// fireebase files must have unique names in their respective storage dir
+  // So the name serves as a unique key
+
+
+
+
+  pushFileToStorage(Upload: Upload, progress: { percentage: number }) {
+    const storageRef = firebase.storage().ref();
+    const uploadTask = storageRef.child(`${this.basePath}/${Upload.file.name}`).put(Upload.file);
+ 
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+      (snapshot) => {
+        // in progress
+        const snap = snapshot as firebase.storage.UploadTaskSnapshot;
+        progress.percentage = Math.round((snap.bytesTransferred / snap.totalBytes) * 100);
+      },
+      (error) => {
+        // fail
+        console.log(error);
+      },
+      () => {
+        // success
+        Upload.url = uploadTask.snapshot.downloadURL;
+        Upload.name = Upload.file.name;
+        this.saveFileData(Upload);
+      }
+    );
+  }
+ 
+  private saveFileData(Upload: Upload) {
+    this.db.list(`${this.basePath}/`).push(Upload);
+  }
+ 
+  getUploads(numberItems): AngularFireList<Upload> {
+    return this.db.list(this.basePath, ref =>
+      ref.limitToLast(numberItems));
+  }
+ 
+  deleteUpload(Upload: Upload) {
+    this.deleteFileDatabase(Upload.key)
+      .then(() => {
+        this.deleteFileStorage(Upload.name);
+      })
+      .catch(error => console.log(error));
+  }
+ 
+  private deleteFileDatabase(key: string) {
+    return this.db.list(`${this.basePath}/`).remove(key);
+  }
+ 
+  private deleteFileStorage(name: string) {
+    const storageRef = firebase.storage().ref();
+    storageRef.child(`${this.basePath}/${name}`).delete();
+  }
+
+  
 }
+
+
+
+
 

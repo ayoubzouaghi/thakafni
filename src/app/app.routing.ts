@@ -14,6 +14,7 @@ import { RechercheComponent } from './views/recherche/recherche.component';
 import { ContactComponent } from './views/contact/contact.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { ConfirmationComponent } from './views/confirmation/confirmation.component';
+import { Profile } from 'selenium-webdriver/firefox';
 
 export const routes: Routes = [
   {
@@ -48,10 +49,37 @@ export const routes: Routes = [
   {
     path: '',
     component: DefaultLayoutComponent,
-    data: {
-      title: 'Accueil'
-    },
+    
     children: [
+      {
+        path: 'recherche',
+        component: RechercheComponent,
+        data: {
+          title: 'Recherche Livre'
+        },
+      },
+      {
+        path: 'deposit',
+        component: DepositComponent,
+        data: {
+          title: 'Desposer Livre'
+        },
+
+      },
+      {
+        path: 'don',
+        component: DonComponent,
+        data: {
+          title: 'Don de livre'
+        },
+      },
+      {
+        path: 'contact',
+        component: ContactComponent,
+        data: {
+          title: 'Contact'
+        },
+      },
       {
         path: 'base',
         loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule)
@@ -85,31 +113,13 @@ export const routes: Routes = [
         loadChildren: () => import('./views/widgets/widgets.module').then(m => m.WidgetsModule)
       },
 
-      {
-        path: 'recherche',
-        component: RechercheComponent
-
-      },
-      {
-        path: 'deposit',
-        component: DepositComponent
-
-
-      },
-      {
-        path: 'don',
-        component: DonComponent
-
-      },
-      {
-        path: 'contact',
-        component: ContactComponent
-
-      },
+      
       {
         path: 'profile',
-        component: ProfileComponent
-
+        component: ProfileComponent,
+        data: {
+          title: 'Profile'
+        },
       },
     ]
 

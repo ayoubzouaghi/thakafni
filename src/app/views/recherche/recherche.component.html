@@ -28,7 +28,7 @@
                   </div>
                   <div class="form-group col-md-3">
 
-                  <button type="submit" class="btn btn-primary"   (click)="recherchelivre()" style="margin-top: 9.5%">Lancer la recherche</button>
+                  <button type="submit" class="btn btn-primary"   (click)="rechercher()" style="margin-top: 9.5%">Lancer la recherche</button>
                   </div>
               </div>
 </form>
@@ -38,85 +38,23 @@
 
 
 </div>
-<div *ngIf="displaylist">
-          <!--Card-->
-          <div class="col-md-12" >
+<div *ngFor=" let list of lists">
+ 
 
-              <div class="card-columns cols-2">
-                  <div class="card">
-                    <div class="row">
-                      <div class="col-md-9">
-                    <div style="position: left"></div><img src="/src/assets/img/avatars/1.jpg "> User
-                  </div>
-                  <div class="col-md-3">
-                    <div>Echange</div>
-</div>
-
-                  </div>
-                    <br><br>
-                    <div class="card-body">
-                      <div class="row">
-                <div class="col-md-6">
-                        <img src="/src/assets/img/avatars/1.jpg ">
-                      </div>
-                      <div class="col-md-6">
-                 <p> titre: hla hla</p>
-                 <p> Auteur: foulen</p>
-                <p> Description : un ma livre!</p>
-                </div>
-              </div>
-              <button class="btn btn-primary" type="submit" style="margin-left: 50%">Demander</button>
-              
-              </div>
-              
-              </div>
-              </div>
-              </div>
-
-    <div class="col-md-12">
-
-<div class="card-columns cols-2">
-    <div class="card">
-      <div class="card-body">
-          <div class="row">
-              <div class="col-md-6">
-                      <img src="/src/assets/img/happrypotter.jpg ">
-                    </div>
-                    <div class="col-md-6">
-
-   <p> titre: Harry Potter</p>
-   <p> Auteur: flen</p>
-   <p> Description : un bon livre!</p>
-   </div>
-   </div>
-<div class="card-footer">publiée par User2</div>
+<div class="card-body">
+  <div class="row">
+    <div class="col-md-4">
+  <img style="width: 75%;" src="../assets/exemple.jpg"></div>
+  <div class="col-md-8">
+  <h5 class="card-title">Harry Potter - auteur</h5>
+  <div class="card-text">
+    <p>Langue : Francais</p>
+    <p>Catégorie : Action</p>
+    <p>Adresse : Radès, Ben arous</p>
+   <a href="">Voir les détails</a>
 </div>
 </div>
 </div>
-
-<div class="card-columns cols-2">
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-  <div class="col-md-6">
-          <img src="/src/assets/img/avatars/1.jpg ">
-        </div>
-        <div class="col-md-6">
-   <p> titre: kteb</p>
-   <p> Auteur: ayoub</p>
-  <p> Description : livre!</p>
-  </div>
 </div>
-<div class="card-footer" >publiée par User3</div>
-
+<div class="card-footer bg-transparent border-info footer-text">dernière modification le 25 juin 2019</div>
 </div>
-
-</div>
-</div>
-</div>
-
-
-
-
-
-             

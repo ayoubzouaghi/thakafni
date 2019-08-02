@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.initform();
     this.authServ.getuser().subscribe(user => {
-      console.log(user);
+      console.log('user details',user);
     })
   }
   initform() {
