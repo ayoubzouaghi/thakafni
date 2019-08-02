@@ -1,56 +1,59 @@
 <!-- Show user data when logged in -->
 <div class="row">
-<div class="col-md-2">
-  <img src="../assets/avatar2.png" class="profile-img">
-  <button class="btn btn-default edit-picture-profile" (click)="openEditPictureModal()">Modifier</button>
- 
-</div>
-<div class="card col-md-6" *ngIf="authService.userData as user">
+  <div class="col-md-2">
+    <img src="../assets/avatar2.png" class="profile-img">
+    <button class="btn btn-default edit-picture-profile" (click)="openEditPictureModal()">Modifier</button>
+
+  </div>
+  
+  <div class="card col-md-6">
     <div class="card-header bg-transparent">
-        <div class="row">
-      <h1>Ayoub Zouaghi</h1>
-      <div class="icons" style="margin-top: 10px;">
-          <img src="../assets/edit-interface-symbol-of-pencil-outline.png" class="edit-icon"  (click)="openEditCoordonneeModal()">
-          </div>
-          </div>
+      <div class="row">
+        <h1>Ayoub Zouaghi</h1>
+        <div class="icons" style="margin-top: 10px;">
+          <img src="../assets/edit-interface-symbol-of-pencil-outline.png" class="edit-icon"
+            (click)="openEditCoordonneeModal()">
+        </div>
+      </div>
     </div>
     <div class="card-body">
       <p>Votre email :&nbsp; {{user.email}}</p>
       <p>Votre adresse :&nbsp; {{user.nom}}</p>
       <p>Votre numéro de téléphone : 22-043-492</p>
     </div>
-</div>
+  </div>
 </div>
 <div *ngFor="let list of lists">
 
 
 
-      <div class="card border-info mb-3 col-md-8">
-        <div class="card-header bg-transparent border-info">
-          <div class="row">
-          <div class="publication-type-design">
-            {{list.type_annonce}}
-          </div>
-          <div class="icons">
-          <img src="../assets/edit-interface-symbol-of-pencil-outline.png" class="edit-icon" (click)="openUpdatePubModal()">
+  <div class="card border-info mb-3 col-md-8">
+    <div class="card-header bg-transparent border-info">
+      <div class="row">
+        <div class="publication-type-design">
+          {{list.type_annonce}}
+        </div>
+        <div class="icons">
+          <img src="../assets/edit-interface-symbol-of-pencil-outline.png" class="edit-icon"
+            (click)="openUpdatePubModal()">
           <img src="../assets/recycle-bin.png" class="delete-icon" (click)="openDeleteModal()"></div>
-        </div>
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-4">
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
           <img style="width: 75%;" src="../assets/exemple.jpg"></div>
-          <div class="col-md-8">
+        <div class="col-md-8">
           <h5 class="card-title">{{list.titrelivre}} - {{list.auteur}}</h5>
           <div class="card-text">
             <p>Langue : {{list.langue}}</p>
             <p>Catégorie : {{list.categorie}}</p>
             <p>Adresse : {{list.adresse}}</p>
-           <a (click)="openPubDetailmodal()">Voir les détails</a>
+            <a (click)="openPubDetailmodal()">Voir les détails</a>
+          </div>
         </div>
-      </div>
-        </div>
-      </div>
-        <div class="card-footer bg-transparent border-info footer-text">dernière modification le 25 juin 2019</div>
       </div>
     </div>
+    <div class="card-footer bg-transparent border-info footer-text">dernière modification le 25 juin 2019</div>
+  </div>
+</div>

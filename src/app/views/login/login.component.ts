@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import * as firebase from 'firebase';
 import { User } from '../../Model/User.model';
+import { AngularFireAuth } from '@angular/fire/auth';
 @Component({
   selector: 'app-dashboard',
   templateUrl: 'login.component.html'
@@ -13,7 +14,10 @@ export class LoginComponent implements OnInit {
   loginform: FormGroup;
   errorMessage: any;
   successMessage: string;
-  constructor(public authServ: AuthService, private formBuilder: FormBuilder, private router: Router) {
+  constructor(public authServ: AuthService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    public afAuth: AngularFireAuth) {
 
   }
   ngOnInit() {
@@ -36,6 +40,15 @@ export class LoginComponent implements OnInit {
       firebase.auth().signInWithEmailAndPassword(email, password)
         .then(res => {
           if (res.user.emailVerified) {
+            this.afAuth.authState.subscribe(user => {
+              if (user) {
+                localStorage.setItem('user', JSON.stringify(user));
+                JSON.parse(localStorage.getItem('user'));
+              } else {
+                localStorage.setItem('user', null);
+                JSON.parse(localStorage.getItem('user'));
+              }
+            })
             this.router.navigate(['/dashboard']);
             resolve(res);
           } else {

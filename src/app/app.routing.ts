@@ -15,6 +15,7 @@ import { ContactComponent } from './views/contact/contact.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { ConfirmationComponent } from './views/confirmation/confirmation.component';
 import { Profile } from 'selenium-webdriver/firefox';
+import { ListeLivreDedonComponent } from './views/liste-livre-dedon/liste-livre-dedon.component';
 
 export const routes: Routes = [
   {
@@ -119,6 +120,13 @@ export const routes: Routes = [
         component: ProfileComponent,
         data: {
           title: 'Profile'
+        },
+      },
+      {
+        path: 'liste-livre-dedon',
+        component: ListeLivreDedonComponent,
+        data: {
+          title: 'Tous les livres de don'
         },
       },
     ]

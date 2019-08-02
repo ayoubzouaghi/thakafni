@@ -33,6 +33,9 @@ export const navItems: NavData[] = [
   {
     name: 'Thakafni',
     url: '/dashboard',
+    icon: 'icon-home',
+    
+
     
   },
   {
@@ -57,6 +60,11 @@ export const navItems: NavData[] = [
   {
     name: 'Contact',
     url : '/contact',
+    icon: 'icon-cursor',
+  },
+  {
+    name: 'Tous livres',
+    url : '/liste-livre-dedon',
     icon: 'icon-cursor',
   }
  

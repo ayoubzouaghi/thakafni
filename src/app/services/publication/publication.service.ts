@@ -87,5 +87,8 @@ update(pub) {
   })
 }
 
+getlivredon(){
+  return this.firestore.collection('don').snapshotChanges();
 
+}
 }

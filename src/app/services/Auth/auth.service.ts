@@ -31,17 +31,7 @@ export class AuthService {
   ) {
 
 
-    this.afAuth.authState.subscribe(user => {
-      if (user) {
-        this.userData = User;
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user'));
-      } else {
-        localStorage.setItem('user', null);
-        JSON.parse(localStorage.getItem('user'));
-      }
-    })
-
+    
   }
 
 
@@ -116,9 +106,8 @@ export class AuthService {
   }
 
   getuser() {
-    this.userData =this.firestore.collection('user').snapshotChanges();
-    console.log(this.userData)
-    return this.userData
+    return this.firestore.collection('user').snapshotChanges();
+    
   }
 
   makeEmailToken(length) {

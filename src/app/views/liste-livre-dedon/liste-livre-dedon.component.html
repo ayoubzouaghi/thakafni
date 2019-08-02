@@ -1,0 +1,23 @@
+<div *ngFor="let list of lists">
+
+
+
+        <div class="card border-info mb-3 col-md-8">
+          <div class="card-header bg-transparent border-info">
+            
+          <div class="card-body">
+           
+            <div class="col-md-8">
+            <h5 class="card-title">livre de Don </h5>
+            <div class="card-text">
+              <p>Titre de livre : {{list.titre}}</p>
+              <p>Nombre de livre : {{list.nombre_de_livre}}</p>
+              <p>Adresse : {{list.adresse}}</p>
+              <p>Information à préciser : {{list.information}}</p>
+          </div>
+        </div>
+          </div>
+        </div>
+          <div class="card-footer bg-transparent border-info footer-text">Publier par {{list.nom}}</div>
+        </div>
+      </div>

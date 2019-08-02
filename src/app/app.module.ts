@@ -61,6 +61,7 @@ import { EditProfilCoordonneeModalComponent } from './edit-profil-coordonnee-mod
 import { DeletePublicationModalComponent } from './delete-publication-modal/delete-publication-modal.component';
 import { PublicatinDetailsModalComponent } from './publicatin-details-modal/publicatin-details-modal.component';
 import { UpdatePublicationModalComponent } from './update-publication-modal/update-publication-modal.component';
+import { ListeLivreDedonComponent } from './views/liste-livre-dedon/liste-livre-dedon.component';
 
 @NgModule({
   imports: [
@@ -102,7 +103,8 @@ import { UpdatePublicationModalComponent } from './update-publication-modal/upda
     EditProfilCoordonneeModalComponent,
     DeletePublicationModalComponent,
     PublicatinDetailsModalComponent,
-    UpdatePublicationModalComponent
+    UpdatePublicationModalComponent,
+    ListeLivreDedonComponent
   ],
   entryComponents: [EditProfilPictureModalComponent,EditProfilCoordonneeModalComponent,DeletePublicationModalComponent,UpdatePublicationModalComponent,PublicatinDetailsModalComponent],
   providers: [AuthService,BooksService,PublicationService],

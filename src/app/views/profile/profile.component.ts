@@ -17,30 +17,27 @@ import { UpdatePublicationModalComponent } from '../../update-publication-modal/
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  userData
   user
   pub: Publication[]
-  lists:Publication[]
-  id:Publication
+  lists: Publication[]
+  lists1: User[]
+
+  id: Publication
   selectedFiles: FileList;
   currentFileUpload: Upload;
   progress: { percentage: number } = { percentage: 0 };
-  constructor(public authService:AuthService,public afs:AngularFirestore,private pubservice: PublicationService,private modalService: NgbModal) { 
-   this.user = localStorage.getItem('user')
-   if(this.user != undefined){
-    console.log(this.user['providerData'])
-    console.log(this.user.data)
-    console.log(this.user)
-    
+  constructor(public authService: AuthService, public afs: AngularFirestore, private pubservice: PublicationService, private modalService: NgbModal) {
+    // this.user = JSON.parse(localStorage.getItem('user'));
 
-   }
-  
+
   }
-  
+
 
 
 
   ngOnInit() {
-      this.pubservice.getPublication().subscribe(actionArray => {
+    this.pubservice.getPublication().subscribe(actionArray => {
       this.lists = actionArray.map(item => {
         return {
           uid: item.payload.doc.id,
@@ -48,37 +45,51 @@ export class ProfileComponent implements OnInit {
         } as Publication;
       })
     });
-console.log("hi",this.authService.userData)
 
 
 
+    this.authService.getuser().subscribe(actionArray => {
+      this.user = actionArray.map(item => {
+        let user = {
+          uid: item.payload.doc.id,
+          ...item.payload.doc.data()
+        } as User;
 
+        if (user.uid == JSON.parse(localStorage.getItem('user')).uid) {
+      
+        }
+        
+        return user
+    })})}
 
-  }
+getuser(){
+
+  this.authService.getuser();
+}
 
   onDelete(pub) {
     this.pubservice.deletePub(pub);
-    }
-// ouvrir le modal pour modifier la photo de profil
-openEditPictureModal(){
+  }
+  // ouvrir le modal pour modifier la photo de profil
+  openEditPictureModal() {
     const modalRef = this.modalService.open(EditProfilPictureModalComponent);
     modalRef.componentInstance.name = 'World';
-}
-openEditCoordonneeModal(){
-  const modalRef = this.modalService.open(EditProfilCoordonneeModalComponent);
-  modalRef.componentInstance.name = 'World';
+  }
+  openEditCoordonneeModal() {
+    const modalRef = this.modalService.open(EditProfilCoordonneeModalComponent);
+    modalRef.componentInstance.name = 'World';
 
-}
-openDeleteModal(){
-  const modalRef = this.modalService.open(DeletePublicationModalComponent);
-  modalRef.componentInstance.name = 'World';
-}
-openPubDetailmodal(){
-  const modalRef = this.modalService.open(PublicatinDetailsModalComponent);
-  modalRef.componentInstance.name = 'World';
-}
-openUpdatePubModal(){
-  const modalRef = this.modalService.open(UpdatePublicationModalComponent);
-  modalRef.componentInstance.name = 'World';
-}
+  }
+  openDeleteModal() {
+    const modalRef = this.modalService.open(DeletePublicationModalComponent);
+    modalRef.componentInstance.name = 'World';
+  }
+  openPubDetailmodal() {
+    const modalRef = this.modalService.open(PublicatinDetailsModalComponent);
+    modalRef.componentInstance.name = 'World';
+  }
+  openUpdatePubModal() {
+    const modalRef = this.modalService.open(UpdatePublicationModalComponent);
+    modalRef.componentInstance.name = 'World';
+  }
 }

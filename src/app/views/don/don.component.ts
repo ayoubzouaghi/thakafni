@@ -35,14 +35,14 @@ this.items = this.afs.collection('don').valueChanges()
   }
 // Pushing the contact-form to the firebase data base
      onSubmit()  {
-     this.afs.collection('don').add({ nom: this.itemnom, prenom: this.itemprenom,titre: this.itemtitre, adresse: this.itemadresse, 
-     information: this.iteminformation});
+     this.afs.collection('don').add({ 
+       nom: this.itemnom,
+       prenom: this.itemprenom,
+       titre: this.itemtitre, 
+       adresse: this.itemadresse,
+       nombre_de_livre: this.itemnombre,
+       information: this.iteminformation});
 //Popup message
-     alert('Merci de nous avoir contacté, votre message est passé!!')
-    }
- 
-// Clearing the form after submit
-clearForm() {
-       this.donForm.reset();
-      }
-    }
+     alert('Merci de nous avoir donnés vos livres')
+     this.donForm.reset();
+    }}
