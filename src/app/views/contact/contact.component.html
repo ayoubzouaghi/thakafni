@@ -1,49 +1,48 @@
-<div class="modal-header white-text">
-  <h4 class="title white-text" >
-    Contacter Nous
-  </h4>
-  <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" class="x"
-    aria-hidden="true" routerLink="/dashboard"><span>× </span>
-  </button>
-</div>
-<div class="card mb-5">
-  <div class="md-form">
+<div class="card ">
+  <div class="card-header card-title ">
+    <h4>
+      Contacter Nous</h4>
+       
+  </div>
+  <div class="card-body ">
     <form [formGroup]="contactForm">
 
-
-      <div class="md-form">
-        <i class="fa fa-user prefix grey-text"></i>        <label for="contactFormName">Nom</label>
+      <div class="form-group">
+        <i class="fa fa-user prefix grey-text"></i> <label for="contactFormName">Nom</label>
 
         <input type="text" id="contactFormName" formControlName="contactFormName" class="form-control" mdbInputDirective
           [(ngModel)]="itemName">
+
       </div>
 
-      <div class="md-form">
-        <i class="fa fa-envelope prefix grey-text"></i>        <label for="contactFormEmail">Email</label>
+      <div class="form-group">
+        <i class="fa fa-envelope prefix grey-text"></i> <label for="contactFormEmail">Email</label>
 
         <input type="email" id="contactFormEmail" formControlName="contactFormEmail" class="form-control"
           mdbInputDirective [(ngModel)]="itemEmail">
-      </div>
 
-      <div class="md-form">
+      </div>
+      <div class="form-group">
         <i class="fa fa-tag prefix grey-text"></i> <label for="contactFormSubject">Objet</label>
 
         <input type="text" id="contactFormSubject" formControlName="contactFormSubject" class="form-control"
           mdbInputDirective [(ngModel)]="itemSubject">
+
+      </div>
+      <div class="form-group">
+        <textarea type="text" rows="10" id="contactFormMessage" formControlName="contactFormMessage" class="md-textarea"
+          style="height: 100px" mdbInputDirective [(ngModel)]="itemMessage">
+            </textarea>
       </div>
 
-      <div class="md-form">
-        <i class="fa fa-pencil prefix grey-text"></i>    <label for="contactFormMessage">Message</label>
 
-        <div><textarea type="text" id="contactFormMessage" formControlName="contactFormMessage" class="md-textarea"
-          style="height: 100px" mdbInputDirective [(ngModel)]="itemMessage">
-  </textarea>
-      </div></div>
 
       <div class="text-center">
         <button [disabled]="contactForm.invalid" (click)="onSubmit()" (click)="clearForm()" type="submit"
-          class="btn waves-light" mdbWavesEffect>Envoyer
-          <i class="fa fa-paper-plane-o ml-1"></i>
+          class="btn btn-primary" mdbWavesEffect>Envoyer
         </button>
         <br>
       </div>
+    </form>
+  </div>
+</div>

@@ -20,7 +20,7 @@ export class DonComponent  {
   items: Observable<any[]>;
   donForm: FormGroup;
 constructor(private fb: FormBuilder, private db: AngularFireDatabase,public afs:AngularFirestore) { 
-this.items = this.db.list('messages').valueChanges()
+this.items = this.afs.collection('don').valueChanges()
 // Passing in MD_Bootstrap form validation 
       this.donForm = fb.group({
       titre: ['', Validators.required],
@@ -35,7 +35,7 @@ this.items = this.db.list('messages').valueChanges()
   }
 // Pushing the contact-form to the firebase data base
      onSubmit()  {
-     this.afs.collection('don').add({ nom: this.itemnom, prenomnom: this.itemprenom,titre: this.itemtitre, adresse: this.itemadresse, 
+     this.afs.collection('don').add({ nom: this.itemnom, prenom: this.itemprenom,titre: this.itemtitre, adresse: this.itemadresse, 
      information: this.iteminformation});
 //Popup message
      alert('Merci de nous avoir contacté, votre message est passé!!')

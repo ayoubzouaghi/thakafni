@@ -18,7 +18,7 @@ export class ContactComponent  {
       items: Observable<any[]>;
       contactForm: FormGroup;
   constructor(private fb: FormBuilder, private db: AngularFireDatabase,public afs:AngularFirestore) { 
-  this.items = this.db.list('messages').valueChanges()
+  this.items = this.afs.collection('messages').valueChanges()
   // Passing in MD_Bootstrap form validation 
           this.contactForm = fb.group({
           contactFormName: ['', Validators.required],
