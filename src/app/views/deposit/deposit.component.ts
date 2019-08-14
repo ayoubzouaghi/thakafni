@@ -19,20 +19,20 @@ export class DepositComponent implements OnInit {
   deposeform: FormGroup;
   pub: Publication[]
   booksSubscription: Subscription;
-  list:Publication[]
+  list: Publication[]
   constructor(
     private pubservice: PublicationService,
     private router: Router,
     public fb: FormBuilder,
-    public firestore:AngularFirestore,
+    public firestore: AngularFirestore,
   ) { }
 
   ngOnInit() {
     this.submitBookForm();
-  
+
   }
 
-  
+
   submitBookForm() {
     this.deposeform = this.fb.group({
       titrelivre: ['', [Validators.required]],
@@ -45,19 +45,21 @@ export class DepositComponent implements OnInit {
       langue: ['', [Validators.required]],
       categorie: ['', [Validators.required]],
       edition: ['', [Validators.required]],
+      photo: ['', [Validators.required]],
+
 
 
 
 
     })
   }
-  submitBook(user:User) {
+  submitBook(user: User) {
     if (this.deposeform.valid) {
-      
+
       // changer les attributs du modèle publication == formcontrolname
 
       this.pubservice.addPublication(this.deposeform.value);
     }
   }
-  
+
 }

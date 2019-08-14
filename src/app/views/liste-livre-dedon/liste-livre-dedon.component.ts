@@ -12,14 +12,14 @@ export class ListeLivreDedonComponent implements OnInit {
   constructor(public pubservice:PublicationService,) { }
 
   ngOnInit() {
-    this.pubservice.getlivredon().subscribe(actionArray => {
-      this.lists = actionArray.map(item => {
-        return {
-          titre: item.payload.doc.id,
-          ...item.payload.doc.data()
-        } as Don;
-      })
-    });
+    //this.pubservice.getlivredon().subscribe(actionArray => {
+     // this.lists = actionArray.map(item => {
+      //  return {
+      //    titre: item.payload.doc.id,
+      //    ...item.payload.doc.data()
+     //   } as Don;
+    //  })
+  //  });
   }
   
 }

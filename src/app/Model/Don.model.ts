@@ -1,13 +1,9 @@
 export class Don{
-
-titre:string;
+uid:string;
 nom:string;
 prenom:string;
-nombre_livre_dedon:number;
+nombre_livre_don:number;
 adresse:string;
 information:string;
-
-
-
 
 }

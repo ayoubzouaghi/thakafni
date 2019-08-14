@@ -11,6 +11,7 @@ import { EditProfilCoordonneeModalComponent } from '../../edit-profil-coordonnee
 import { DeletePublicationModalComponent } from '../../delete-publication-modal/delete-publication-modal.component';
 import { PublicatinDetailsModalComponent } from '../../publicatin-details-modal/publicatin-details-modal.component';
 import { UpdatePublicationModalComponent } from '../../update-publication-modal/update-publication-modal.component';
+import { DepositComponent } from '../deposit/deposit.component';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -18,16 +19,19 @@ import { UpdatePublicationModalComponent } from '../../update-publication-modal/
 })
 export class ProfileComponent implements OnInit {
   userData
+  displayImg
   user
-  pub: Publication[]
-  lists: Publication[]
-  lists1: User[]
+  publication:Publication[]=[];
+  fileUploads: any[];
 
   id: Publication
   selectedFiles: FileList;
   currentFileUpload: Upload;
   progress: { percentage: number } = { percentage: 0 };
-  constructor(public authService: AuthService, public afs: AngularFirestore, private pubservice: PublicationService, private modalService: NgbModal) {
+  constructor(public authService: AuthService,
+     public afs: AngularFirestore,
+      private pubservice: PublicationService,
+      private modalService: NgbModal) {
     // this.user = JSON.parse(localStorage.getItem('user'));
 
 
@@ -38,7 +42,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.pubservice.getPublication().subscribe(actionArray => {
-      this.lists = actionArray.map(item => {
+      this.publication = actionArray.map(item => {
         return {
           uid: item.payload.doc.id,
           ...item.payload.doc.data()
@@ -49,22 +53,30 @@ export class ProfileComponent implements OnInit {
 
 
     this.authService.getuser().subscribe(actionArray => {
-      this.user = actionArray.map(item => {
+      this.user = actionArray.filter(item => {
+        console.log('testttt item', item)
         let user = {
           uid: item.payload.doc.id,
           ...item.payload.doc.data()
+          
         } as User;
-
         if (user.uid == JSON.parse(localStorage.getItem('user')).uid) {
-      
+         
+return user
         }
+          console.log('testt',user)
         
-        return user
-    })})}
-
+    })})
+  
+  // Use snapshotChanges().map() to store the key
+  this.displayImg = this.authService.getUploads(0)
+  console.log(this.displayImg)
+}
+  
+  
 getuser(){
 
-  this.authService.getuser();
+  this.authService.getuserbyid(this.user.uid);
 }
 
   onDelete(pub) {
@@ -89,7 +101,8 @@ getuser(){
     modalRef.componentInstance.name = 'World';
   }
   openUpdatePubModal() {
-    const modalRef = this.modalService.open(UpdatePublicationModalComponent);
+    const modalRef = this.modalService.open(DepositComponent, { size: 'lg' });
+  
     modalRef.componentInstance.name = 'World';
   }
 }

@@ -1,60 +1,58 @@
+<div class="card ">
+  <div class="card-header card-title">
 
-        
-    
-           <h3>Chercher un livre</h3>
-           <br><br>
-           <div class="card " >
-            <form [formGroup]="rechercheform">
-                <div class="row">
-        
-                    <div class="form-group col-md-3">
-                      <label class="lab">Titre</label>
-                      <input type="text" class="form-control" formControlName="titre"  >
-                     
-                    </div>
-                    <div class="form-group col-md-3">
-                      <label >Auteur</label>
-                      <input type="text" class="form-control" formControlName="auteur">
-                    
-                    </div>
-              <div class="form-group col-md-3">
-                  <label >Sélectionner une catégorie </label>
-                  <select class="form-control" formControlName="categorie" >
-                    <option>Romans</option>
-                    <option>Comics</option>
-                    <option>Livres de cuisine </option>
-                    <option>livres de jeunesses</option>
-                  </select>
-                  </div>
-                  <div class="form-group col-md-3">
+    <h4>Chercher un livre</h4>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="rechercheform">
+      <div class="row">
 
-                  <button type="submit" class="btn btn-primary"   (click)="rechercher()" style="margin-top: 9.5%">Lancer la recherche</button>
-                  </div>
-              </div>
-</form>
+        <div class="form-group col-md-3">
+          <label class="lab">Titre</label>
+          <input type="text" class="form-control" formControlName="titre" [(ngModel)]="filtertext"
+            placeholder="chercher par titre">
 
+        </div>
+        <div class="form-group col-md-3">
+          <label>Auteur</label>
+          <input type="text" class="form-control" formControlName="auteur">
 
+        </div>
+        <div class="form-group col-md-3">
+          <label>Sélectionner une catégorie </label>
+          <select class="form-control" formControlName="categorie">
+            <option>Romans</option>
+            <option>Comics</option>
+            <option>Livres de cuisine </option>
+            <option>livres de jeunesses</option>
+          </select>
+        </div>
 
-
-
+      </div>
+    </form>
+  </div>
 </div>
-<div *ngFor=" let list of lists">
- 
 
-<div class="card-body">
-  <div class="row">
-    <div class="col-md-4">
-  <img style="width: 75%;" src="../assets/exemple.jpg"></div>
-  <div class="col-md-8">
-  <h5 class="card-title">Harry Potter - auteur</h5>
-  <div class="card-text">
-    <p>Langue : Francais</p>
-    <p>Catégorie : Action</p>
-    <p>Adresse : Radès, Ben arous</p>
-   <a href="">Voir les détails</a>
-</div>
-</div>
-</div>
-</div>
-<div class="card-footer bg-transparent border-info footer-text">dernière modification le 25 juin 2019</div>
+<div *ngFor="let l of publication | myfilter : filtertext ">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <img style="width: 75%;" src="../assets/exemple.jpg"></div>
+        <div class="col-md-8">
+          <h5 class="card-title">{{l.titrelivre}} - {{l.auteur}}</h5>
+          <div class="card-text">
+            <p>Langue : {{l.langue}}</p>
+            <p>Catégorie : {{l.categorie}}</p>
+            <p>Adresse : {{l.adresse}}</p>
+            <a href="">Voir les détails</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer bg-transparent border-info footer-text">dernière modification le 25 juin 2019</div>
+
+  </div>
+
+
 </div>

@@ -39,37 +39,29 @@ export const navItems: NavData[] = [
     
   },
   {
-    name: 'chercher un livre',
+    name: 'Chercher un livre',
     url: '/recherche',
     icon: 'icon-cursor',
 
   },
   
   {
-    name: 'Déposer livre',
+    name: 'Déposer un livre',
     url: '/deposit',
     icon: 'icon-cursor',
 
   },
   {
-    name: 'Don de livre',
+    name: 'Don',
     url: '/don',
     icon: 'icon-cursor',
 
   },
+   
   {
     name: 'Contact',
     url : '/contact',
-    icon: 'icon-cursor',
-  },
-  {
-    name: 'Tous livres',
-    url : '/liste-livre-dedon',
-    icon: 'icon-cursor',
+    icon: 'icon-user',
   }
- 
-  
-    
-     
   
 ];

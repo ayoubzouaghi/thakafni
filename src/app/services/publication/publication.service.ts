@@ -7,6 +7,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { User } from '../../Model/User.model';
 import { Observable } from 'rxjs';
 import * as firebase from 'firebase';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Injectable({
   providedIn: 'root'
@@ -91,4 +92,5 @@ getlivredon(){
   return this.firestore.collection('don').snapshotChanges();
 
 }
+
 }

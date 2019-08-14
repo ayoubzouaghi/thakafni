@@ -16,6 +16,8 @@ import { ProfileComponent } from './views/profile/profile.component';
 import { ConfirmationComponent } from './views/confirmation/confirmation.component';
 import { Profile } from 'selenium-webdriver/firefox';
 import { ListeLivreDedonComponent } from './views/liste-livre-dedon/liste-livre-dedon.component';
+import { TousLesLivresComponent } from './tous-les-livres/tous-les-livres.component';
+import { ChatComponent } from './views/chat/chat.component';
 
 export const routes: Routes = [
   {
@@ -44,6 +46,13 @@ export const routes: Routes = [
     component: ConfirmationComponent,
     data: {
       title: 'Confirmation Page'
+    }
+  },
+  {
+    path: 'chat',
+    component: ChatComponent,
+    data: {
+      title: 'Chat Page'
     }
   },
 
@@ -79,6 +88,13 @@ export const routes: Routes = [
         component: ContactComponent,
         data: {
           title: 'Contact'
+        },
+      },
+      {
+        path: 'tous-les-livres',
+        component: TousLesLivresComponent,
+        data: {
+          title: 'Tous les livres'
         },
       },
       {

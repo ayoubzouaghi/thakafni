@@ -1,74 +1,84 @@
 <div class="animated fadeIn">
-  <div class="card-columns cols-2">
-    <div class="card">
-      <div class="card-header card-title"><h4>
-Don de livres</h4>
-      </div>
-        <div class="card-body">
-          <form [formGroup]="donForm">
-            
-        <div class="row">
-          <div class="col-md-6">
-          <div class="form-group">
-            <label>Titre du livre *</label>
-            <input type="text" class="form-control" formControlName="titre" class="form-control" mdbInputDirective
-            [(ngModel)]="itemtitre" >
-           
-          </div>
-          <div class="form-group">
-            <label >Nom *</label>
-            <input type="text" class="form-control" formControlName="nom" class="form-control" mdbInputDirective
-            [(ngModel)]="itemnom">
-          
-            </div>
-            <div class="form-group">
-            <label>Prénom *</label>
-            <input type="text" class="form-control"   class="form-control" formControlName="prenom" class="form-control" mdbInputDirective
-            [(ngModel)]="itemprenom">
-          
-          </div>
-        <div class="form-group">
-        <label >Nombre des livres *</label>
-        <input type="number" class="form-control"  class="form-control" formControlName="nombre" class="form-control" mdbInputDirective
-        [(ngModel)]="itemnombre">
-        </div>
-        
-          <div class="form-group">
-            <label >Adresse *</label>
-            <input type="text" class="form-control"  class="form-control" formControlName="adresse" class="form-control" mdbInputDirective
-            [(ngModel)]="itemadresse">
-          </div>
-         
-                  <div>
-                    <label >Informations à préciser :</label>
-                    <textarea class="form-control rounded-0"  rows="10"  class="form-control" formControlName="information" class="form-control" mdbInputDirective
-                    [(ngModel)]="iteminformation"></textarea>
-                   </div>    
-                 
-</div>
-                 
-</div>
-                        
-          <button type="submit" class="btn btn-primary" (click)="onSubmit()" >Je donne mes livres</button>
-          </form>
 
-
+  <div class="card border-info mb-3 col-md-6">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12">
+          <h5 class="card-title">Publié par Ahmed Mohamed</h5>
+          <div class="card-text">
+            <p>Ahmed a déposé 50 livres pour faire un don. Veuillez lui contacter pour avoir plus de détails.</p>
+            <button class="btn btn-primary" style="margin-left: 88%;">Contacter</button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="card">
+    <div class="card-footer bg-transparent border-info footer-text">Dernière modification le 25 juin 2019</div>
+  </div>
+
+
+  <div class="card border-info mb-3 col-md-6">
       <div class="card-body">
-    <div class="row">
-        <div class="col-md-6">
-            <p>DON DE LIVRES :</p>
-
-
-            <p>- Vous déménagez et vous avez des cartons de livres à vous débarrasser ?</p> 
-             <p>- Vos livres prennent la poussière et de la place ?</p>
-             <p>- Les examens sont terminés et vos livres scolaires ne vous servent plus ?</p>
-             <p>Ne jetez plus vos livres et donnez leurs une nouvelle vie en faisant un don à Thakafni !</p>
-            <p>Grace à vos dons de livres, vous allez faire des heureux !</p>
+        <div class="row">
+          <div class="col-md-12">
+            <h5 class="card-title">Publié par Sonia Ben Ayed</h5>
+            <div class="card-text">
+              <p>Ahmed a déposé 5 livres pour faire un don. Veuillez lui contacter pour avoir plus de détails.</p>
+              <button class="btn btn-primary" style="margin-left: 88%;">Contacter</button>
+            </div>
           </div>
         </div>
       </div>
+      <div class="card-footer bg-transparent border-info footer-text">Dernière modification le 25 juin 2019</div>
     </div>
+
+
+    <div class="card border-info mb-3 col-md-6">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h5 class="card-title">Publié par Mohamed Abedallah</h5>
+              <div class="card-text">
+                <p>Ahmed a déposé 10 livres pour faire un don. Veuillez lui contacter pour avoir plus de détails.</p>
+                <button class="btn btn-primary" style="margin-left: 88%;">Contacter</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer bg-transparent border-info footer-text">Dernière modification le 25 juin 2019</div>
+      </div>
+
+
+      <div class="card border-info mb-3 col-md-6">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <h5 class="card-title">Publié par Oussama saleh</h5>
+                <div class="card-text">
+                  <p>Ahmed a déposé 50 livres pour faire un don. Veuillez lui contacter pour avoir plus de détails.</p>
+                  <button class="btn btn-primary" style="margin-left: 77%;">Contacter</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer bg-transparent border-info footer-text">Dernière modification le 25 juin 2019</div>
+        </div>
+
+  <div class="car1">
+      <button class="btn btn-primary" style="margin-left: 77%;" (click)="openAddDonModal()">+ Ajouter un don</button>
+      <div class="card" style="margin-top: 4%">
+        <div class="card-body">
+          <p style="font-weight: 700;">DON DE LIVRES :</p>
+
+
+          <p>- Vous déménagez et vous avez des cartons de livres à vous débarrasser ?</p>
+          <p>- Vos livres prennent la poussière et de la place ?</p>
+          <p>- Les examens sont terminés et vos livres scolaires ne vous servent plus ?</p>
+          <p>Ne jetez plus vos livres et donnez leurs une nouvelle vie en faisant un don à Thakafni !</p>
+          <p>Grace à vos dons de livres, vous allez faire des heureux !</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+ 

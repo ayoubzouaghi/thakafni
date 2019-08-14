@@ -38,3 +38,26 @@ margin-top: -61px;
 margin-right: 11px;
 margin-left: 106px;
 }
+.card
+	{
+    position : relative;
+	height: auto;
+	width: auto;
+	margin : 50px auto;
+    background-color: #2f353a;
+    border-radius: 3px;
+    box-shadow: -1rem 0 1rem #2f353a;
+
+    }
+    p{
+       
+            color: white;
+            font-size: 1rem;
+            
+          
+    }
+    .card-title{
+        font-size: 1.8rem;
+        color: rgb(49, 206, 218);
+
+    }

@@ -1,0 +1,45 @@
+
+
+<div *ngFor="let list of publication">
+
+
+
+  <div class="card border-info mb-3 col-md-8">
+    <div class="card-header bg-transparent border-info">
+      <div class="row">
+        
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <img style="width: 75%;" src="../assets/exemple.jpg"></div>
+        <div class="col-md-8">
+          <h5 class="card-title">{{list.titrelivre}} - {{list.auteur}}</h5>
+          <div class="card-text">
+            <p>Langue : {{list.langue}}</p>
+            <p>Catégorie : {{list.categorie}}</p>
+            <p>Adresse : {{list.adresse}}</p>
+            <a (click)="openPubDetailmodal()">Voir les détails</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer bg-transparent border-info footer-text">dernière modification le 25 juin 2019</div>
+  </div>
+
+
+
+  <div class="container">
+      <div class="comment-box">
+        <div class="comment-form">
+          <form>
+            
+            <div>
+              <textarea id="comment" rows="3" cols="30" placeholder="ajouter un commentaire ici"></textarea>
+            </div>
+            <button type="submit">COMMENT</button>
+          </form>  
+        </div>
+       
+      </div>
+    </div>
+</div>

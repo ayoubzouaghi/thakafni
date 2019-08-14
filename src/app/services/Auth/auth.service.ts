@@ -8,6 +8,7 @@ import { User } from '../../Model/User.model';
 import { Router } from '@angular/router';
 import { AngularFireDatabase, AngularFireList} from '@angular/fire/database';
 import { Upload } from '../../Model/Upload.model';
+import { switchMap, first} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -30,10 +31,23 @@ export class AuthService {
 
   ) {
 
-
-    
-  }
-
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.userData = user;
+        localStorage.setItem('user', JSON.stringify(this.userData));
+        JSON.parse(localStorage.getItem('user'));
+      } else {
+        localStorage.setItem('user', null);
+        JSON.parse(localStorage.getItem('user'));
+      }
+    })}
+getUser(){
+return this.user.pipe(first()).toPromise();
+}
+get isLoggedIn(): boolean {
+  const user = JSON.parse(localStorage.getItem('user'));
+  return (user !== null && user.verified !== false) ? true : false;
+}
 
   doFacebookLogin() {
     return new Promise<any>((resolve, reject) => {
@@ -63,7 +77,17 @@ export class AuthService {
     // Sets user data to firestore on login
 
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`user/${user.uid}`);
+    /*const data: User = {
+      uid: user.uid,
+      email: user.email,
+      nom: user.nom,
+      prenom: user.prenom,
+      password:user.password,
+      verified:user.verifeid,
+      emailToken:user.emailToken
 
+    }
+    return userRef.set(data, { merge: true })*/
 
   }
 
@@ -71,19 +95,31 @@ export class AuthService {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(user.email, user.password).then(res => {
         setTimeout(() => {
-          user.verified = false;
-          user.emailToken = this.makeEmailToken(125);
-          user.uid = res.user.uid;
-          this.firestore.collection("user").add(user).then(res => {
-            this.SendVerificationMail();
-            resolve(res);
-          });
+          const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+          const userData: User = {
+            uid: user.uid,
+            email: user.email,
+            nom: user.nom,
+            photoURL: user.photoURL,
+            verified: user.verified,
+            emailToken:user.emailToken,
+            password:user.password
+          }
+          return userRef.set(userData, {
+            merge: true
+            
+          })
+          
         }, 300);
+        this.firestore.collection("user").add(user).then(res => {
+          this.SendVerificationMail();
+          resolve(res);
+        });
 
       });
     });
   }
-
+  
 
   logout() {
     this.afAuth.auth.signOut();
@@ -107,6 +143,10 @@ export class AuthService {
 
   getuser() {
     return this.firestore.collection('user').snapshotChanges();
+    
+  }
+  getuserbyid(uid) {
+    return this.firestore.collection('user').doc('user.uid').snapshotChanges();
     
   }
 

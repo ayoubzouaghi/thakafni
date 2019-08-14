@@ -3,6 +3,8 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AddDonComponent } from '../../add-don/add-don.component';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-don',
@@ -19,7 +21,10 @@ export class DonComponent  {
 
   items: Observable<any[]>;
   donForm: FormGroup;
-constructor(private fb: FormBuilder, private db: AngularFireDatabase,public afs:AngularFirestore) { 
+constructor(private fb: FormBuilder, 
+  private db: AngularFireDatabase,
+  public afs:AngularFirestore,
+  private modalService: NgbModal) { 
 this.items = this.afs.collection('don').valueChanges()
 // Passing in MD_Bootstrap form validation 
       this.donForm = fb.group({
@@ -32,6 +37,10 @@ this.items = this.afs.collection('don').valueChanges()
 
 
    });
+  }
+  openAddDonModal() {
+    const modalRef = this.modalService.open(AddDonComponent, { size: 'lg' });
+    //modalRef.componentInstance.name = 'World';
   }
 // Pushing the contact-form to the firebase data base
      onSubmit()  {

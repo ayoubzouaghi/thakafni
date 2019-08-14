@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy, AsyncPipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -62,6 +62,13 @@ import { DeletePublicationModalComponent } from './delete-publication-modal/dele
 import { PublicatinDetailsModalComponent } from './publicatin-details-modal/publicatin-details-modal.component';
 import { UpdatePublicationModalComponent } from './update-publication-modal/update-publication-modal.component';
 import { ListeLivreDedonComponent } from './views/liste-livre-dedon/liste-livre-dedon.component';
+import { TousLesLivresComponent } from './tous-les-livres/tous-les-livres.component';
+import { MessagingService } from './services/messaging.service';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { ChatComponent } from './views/chat/chat.component';
+import { ChatService } from './chat.service';
+import { AddDonComponent } from './add-don/add-don.component';
+import { MyfilterPipe } from './myfilter.pipe';
 
 @NgModule({
   imports: [
@@ -83,7 +90,9 @@ import { ListeLivreDedonComponent } from './views/liste-livre-dedon/liste-livre-
     FormsModule,
     ReactiveFormsModule,
     ChartsModule,
-    NgbModalModule
+    NgbModalModule,
+    AngularFireMessagingModule,
+
     
   ],
   declarations: [
@@ -104,10 +113,14 @@ import { ListeLivreDedonComponent } from './views/liste-livre-dedon/liste-livre-
     DeletePublicationModalComponent,
     PublicatinDetailsModalComponent,
     UpdatePublicationModalComponent,
-    ListeLivreDedonComponent
+    ListeLivreDedonComponent,
+    TousLesLivresComponent,
+    ChatComponent,
+    AddDonComponent,
+    MyfilterPipe
   ],
-  entryComponents: [EditProfilPictureModalComponent,EditProfilCoordonneeModalComponent,DeletePublicationModalComponent,UpdatePublicationModalComponent,PublicatinDetailsModalComponent],
-  providers: [AuthService,BooksService,PublicationService],
+  entryComponents: [EditProfilPictureModalComponent,AddDonComponent,EditProfilCoordonneeModalComponent,DeletePublicationModalComponent,UpdatePublicationModalComponent,PublicatinDetailsModalComponent],
+  providers: [AuthService,PublicationService,MessagingService, AsyncPipe,ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
