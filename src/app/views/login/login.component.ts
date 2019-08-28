@@ -22,9 +22,7 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit() {
     this.initform();
-    this.authServ.getuser().subscribe(user => {
-      console.log('user details',user);
-    })
+    
   }
   initform() {
     this.loginform = this.formBuilder.group({
@@ -33,40 +31,16 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  Signin() {
-    const email = this.loginform.get('email').value;
-    const password = this.loginform.get('password').value;
-    return new Promise<any>((resolve, reject) => {
-      firebase.auth().signInWithEmailAndPassword(email, password)
-        .then(res => {
-          if (res.user.emailVerified) {
-            this.afAuth.authState.subscribe(user => {
-              if (user) {
-                localStorage.setItem('user', JSON.stringify(user));
-                JSON.parse(localStorage.getItem('user'));
-              } else {
-                localStorage.setItem('user', null);
-                JSON.parse(localStorage.getItem('user'));
-              }
-            })
-            this.router.navigate(['/dashboard']);
-            resolve(res);
-          } else {
-            this.errorMessage = "verifier votre adresse email!";
-            this.successMessage = "";
-          }
-
-        }, err => {
-          console.log(err);
-          this.errorMessage = err.message;
-          this.successMessage = "";
-        })
-    })
-
-  }
+  
   
   resetPassword() {
     const email = this.loginform.get('email').value;
     this.authServ.resetPassword(email)
+  }
+  Signin(){
+    let email=this.loginform.get('email').value;
+    let password=this.loginform.get('password').value;
+
+    this.authServ.Signin({ email, password })
   }
 }

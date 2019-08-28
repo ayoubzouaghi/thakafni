@@ -12,11 +12,20 @@ import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/fire
 export class PublicatinDetailsModalComponent implements OnInit {
   listcollection:   AngularFirestoreCollection<any> = this.firestore.collection('publication');
   lists = this.listcollection.valueChanges();
+  publication: Publication[] = [];
 
 
   constructor(public activeModal: NgbActiveModal,public pubservice:PublicationService,public firestore:AngularFirestore) { }
 
   ngOnInit() {
+    this.pubservice.getPublication().subscribe(actionArray => {
+      this.publication = actionArray.map(item => {
+        return {
+          uid: item.payload.doc.id,
+          ...item.payload.doc.data()
+        } as Publication;
+      })
+    });
    
   }
   private getDismissReason(reason: any): string {

@@ -13,19 +13,42 @@ import { MessagingService } from '../../services/messaging.service';
 export class DefaultLayoutComponent implements OnInit {
   isAuth:boolean;
   message;
-
+public isLogged:boolean
   public navItems = navItems;
   public sidebarMinimized = true;
   private changes: MutationObserver;
   public element: HTMLElement;
+  user: any;
   constructor( public authserv:AuthService,private messagingService: MessagingService) {
+    this.user = this.authserv.afAuth.authState;
 
+    this.user.subscribe((auth) => {
+
+      if (auth) {
+
+        this.isLogged = true;
+
+
+        console.log('Connecté');
+
+
+
+      } else {
+
+        console.log('Déconnecté');
+
+        this.isLogged = false;
+
+      }
+    })
   
   }
 
   ngOnInit(
    
   ) {
+    
+    //notif
     const userId = 'user001';
     this.messagingService.requestPermission(userId)
     this.messagingService.receiveMessage()
@@ -41,8 +64,9 @@ firebase.auth().onAuthStateChanged(
       this.isAuth=false;
     }
   }
-);}
+);
+}
   onSignOut(){
-    this.authserv.logout()
+    return this.authserv.logout()
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NgbActiveModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../services/Auth/auth.service';
@@ -12,15 +12,18 @@ import { Observable } from 'rxjs';
   styleUrls: ['./edit-profil-coordonnee-modal.component.scss']
 })
 export class EditProfilCoordonneeModalComponent implements OnInit {
+
+  @Output('update') updateuser = new EventEmitter();
+  @Input('user') user:any;
+
+
   modificationForm: FormGroup;
 
 
-  user: Observable<User | null>;
 
   userCollection: AngularFirestoreCollection<any> = this.afs.collection('user');
   pubobs = this.userCollection.valueChanges();
   constructor(private formBuilder: FormBuilder,
-    public activeModal: NgbActiveModal,
     public authservice:AuthService,
     public afs:AngularFirestore
   ) { }
@@ -47,36 +50,19 @@ export class EditProfilCoordonneeModalComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
-  /*update(user)
+  update(user)
   {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`user/${user.uid}`);
-
-    const data: User = {
-      uid: user.uid,
-      email: user.email,
-      nom: user.nom,
-      prenom: user.prenom,
-      verified:true,
-      password:user.password,
-      emailToken:user.emailToken
+    user.nom=  this.modificationForm.get('nom').value
+    user.prenom=  this.modificationForm.get('prenom').value
+    user.email= this.modificationForm.get('email').value
+      
+      this.updateuser.emit(user);
     }
 
-    return userRef.set(data, { merge: true })
-
-  }*/
-  update(user) {
-    this.userCollection.doc(user.uid).update({
-      email: this.modificationForm.get('email').value,
-      nom: 'newnom',
-      prenom: 'newprenom',
-      password: 'newpassword',
-      
-  
-  
-    }).then(() => {
-      console.log('updated');
-    })
-  }
+   
 
   }
+ 
+
+  
 

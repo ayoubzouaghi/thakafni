@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.initform();
+   
   }
   //Initialisation du formulaire
   initform() {
@@ -45,7 +46,8 @@ export class RegisterComponent implements OnInit {
     console.log('value=> ',value)
     this.service.doRegister(value)
       .then(res => {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/first-layout']);
+        localStorage.setItem("connected", "true");
         console.log(res);
         this.errorMessage = "";
         this.successMessage = "Your account has been created";

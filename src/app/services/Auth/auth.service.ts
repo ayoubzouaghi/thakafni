@@ -6,22 +6,26 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
 import { Observable, of } from 'rxjs';
 import { User } from '../../Model/User.model';
 import { Router } from '@angular/router';
-import { AngularFireDatabase, AngularFireList} from '@angular/fire/database';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Upload } from '../../Model/Upload.model';
-import { switchMap, first} from 'rxjs/operators';
+import { switchMap, first } from 'rxjs/operators';
+import { NGB_DATEPICKER_PARSER_FORMATTER_FACTORY } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date-parser-formatter';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  userCollection: AngularFirestoreCollection<User>
+  userCollection:  AngularFirestoreCollection<any> = this.firestore.collection('user');
   user: Observable<User[]>;
   userData: any;
-  private basePath:string = '/uploads';
+  private basePath: string = '/uploads';
   uploads: AngularFireList<Upload[]>;
-
-  
-
+  errorMessage: string;
+  successMessage: string;
+  public logged: boolean
+  newUser: any
+  private currentUser: firebase.User = null;
+  isLogged: boolean
   constructor(private firestore: AngularFirestore,
 
     public afAuth: AngularFireAuth,
@@ -30,24 +34,77 @@ export class AuthService {
     private db: AngularFireDatabase,
 
   ) {
-
     this.afAuth.authState.subscribe(user => {
       if (user) {
+        console.log('test1', user.uid)
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
       } else {
+        console.log('testt2')
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));
       }
-    })}
-getUser(){
-return this.user.pipe(first()).toPromise();
-}
-get isLoggedIn(): boolean {
-  const user = JSON.parse(localStorage.getItem('user'));
-  return (user !== null && user.verified !== false) ? true : false;
-}
+    })
+
+  }
+
+
+  Signin(user) {
+
+    return new Promise<any>((resolve, reject) => {
+      this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
+        .then(res => {
+
+          if (res.user.emailVerified) {
+ console.log('tesyt3', res.user)
+            this.router.navigate(['/first-layout']);
+            this.SetUserData(res.user);
+
+            localStorage.setItem("connected", "true");
+            resolve(res);
+          } else {
+            this.errorMessage = "verifier votre adresse email!";
+            this.successMessage = "";
+          }
+
+        }, err => {
+          console.log(err);
+          this.errorMessage = err.message;
+          this.successMessage = "";
+        })
+    })
+
+  }
+  SetUserData(user) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`user/${user.uid}`);
+    const userData: User = {
+      uid: user.uid,
+      email: user.email,
+      nom: user.nom,
+      photoURL: user.photoURL,
+      verified: user.emailVerified,
+      prenom: user.prenom,
+      password: user.password,
+      emailToken: user.emailToken
+    }
+    return userRef.set(userData, {
+      merge: true
+    })
+  }
+
+  getUser() {
+    return this.user.pipe(first()).toPromise();
+  }
+
+
+  isLoggedIn() {
+    if (this.currentUser == null) {
+     return false
+    } else {
+      return true
+    }
+  }
 
   doFacebookLogin() {
     return new Promise<any>((resolve, reject) => {
@@ -69,37 +126,30 @@ get isLoggedIn(): boolean {
 
   private async oAuthLogin(provider: auth.AuthProvider | auth.GoogleAuthProvider) {
     const credential = await this.afAuth.auth.signInWithPopup(provider);
-    this.updateUserData(credential.user);
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/first-layout']);
   }
 
-  private updateUserData(user) {
-    // Sets user data to firestore on login
 
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`user/${user.uid}`);
-    /*const data: User = {
-      uid: user.uid,
-      email: user.email,
-      nom: user.nom,
-      prenom: user.prenom,
-      password:user.password,
-      verified:user.verifeid,
-      emailToken:user.emailToken
-
-    }
-    return userRef.set(data, { merge: true })*/
-
-  }
 
   doRegister(user: User) {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(user.email, user.password).then(res => {
-        setTimeout(() => {
-          const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+        this.newUser = user;
+        console.log(res)
+        console.log(this.newUser)
+        res.user.updateProfile({
+          displayName: user.nom + ' ' + user.prenom
+        });
+        localStorage.setItem('user', JSON.stringify(this.newUser));
+        JSON.parse(localStorage.getItem('user'));
+
+        /*setTimeout(() => {
+          const userRef: AngularFirestoreDocument<any> = this.afs.doc(`user/${user.uid}`);
           const userData: User = {
             uid: user.uid,
             email: user.email,
             nom: user.nom,
+            prenom:user.prenom,
             photoURL: user.photoURL,
             verified: user.verified,
             emailToken:user.emailToken,
@@ -111,6 +161,7 @@ get isLoggedIn(): boolean {
           })
           
         }, 300);
+        */
         this.firestore.collection("user").add(user).then(res => {
           this.SendVerificationMail();
           resolve(res);
@@ -119,19 +170,23 @@ get isLoggedIn(): boolean {
       });
     });
   }
-  
+
 
   logout() {
-    this.afAuth.auth.signOut();
-    localStorage.removeItem('user');
-    this.router.navigate(['/login']);
+   this.afAuth.auth.signOut().then(() => {
+  
+    this.router.navigate(['first-layout']);})
   }
+
+
+
   SendVerificationMail() {
     return this.afAuth.auth.currentUser.sendEmailVerification()
       .then(() => {
         this.router.navigate(['/confirmation']);
       })
   }
+
 
 
   resetPassword(email: string) {
@@ -143,11 +198,11 @@ get isLoggedIn(): boolean {
 
   getuser() {
     return this.firestore.collection('user').snapshotChanges();
-    
+
   }
-  getuserbyid(uid) {
-    return this.firestore.collection('user').doc('user.uid').snapshotChanges();
-    
+  getuserbyid() {
+    return this.firestore.doc((`user/${this.currentUser.uid}`));
+
   }
 
   makeEmailToken(length) {
@@ -163,7 +218,7 @@ get isLoggedIn(): boolean {
 
 
 
-// fireebase files must have unique names in their respective storage dir
+  // fireebase files must have unique names in their respective storage dir
   // So the name serves as a unique key
 
 
@@ -172,7 +227,7 @@ get isLoggedIn(): boolean {
   pushFileToStorage(Upload: Upload, progress: { percentage: number }) {
     const storageRef = firebase.storage().ref();
     const uploadTask = storageRef.child(`${this.basePath}/${Upload.file.name}`).put(Upload.file);
- 
+    const path = '/user/${this.user.uid}.jpg';
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
       (snapshot) => {
         // in progress
@@ -186,21 +241,24 @@ get isLoggedIn(): boolean {
       () => {
         // success
         Upload.url = uploadTask.snapshot.downloadURL;
+        console.log(Upload.url)
         Upload.name = Upload.file.name;
         this.saveFileData(Upload);
       }
     );
   }
- 
+
   private saveFileData(Upload: Upload) {
     this.db.list(`${this.basePath}/`).push(Upload);
+    this.SetUserData({"imageUrl" : "test"})
+
   }
- 
+
   getUploads(numberItems): AngularFireList<Upload> {
     return this.db.list(this.basePath, ref =>
       ref.limitToLast(numberItems));
   }
- 
+
   deleteUpload(Upload: Upload) {
     this.deleteFileDatabase(Upload.key)
       .then(() => {
@@ -208,20 +266,25 @@ get isLoggedIn(): boolean {
       })
       .catch(error => console.log(error));
   }
- 
+
   private deleteFileDatabase(key: string) {
     return this.db.list(`${this.basePath}/`).remove(key);
   }
- 
+
   private deleteFileStorage(name: string) {
     const storageRef = firebase.storage().ref();
     storageRef.child(`${this.basePath}/${name}`).delete();
   }
 
-  
+  updateUser(user) {
+    this.userCollection.doc(user.uid).update({
+      nom:user.nom,
+      prenom:user.prenom,
+      email: user.email,
+     
+})}
+
 }
-
-
 
 
 

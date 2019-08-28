@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AddDonComponent } from '../../add-don/add-don.component';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PublicationService } from '../../services/publication/publication.service';
+import { Don } from '../../Model/Don.model';
 
 @Component({
   selector: 'app-don',
@@ -12,19 +14,21 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./don.component.scss']
 })
 export class DonComponent  {
-  itemtitre = '';
-  itemnom = '';
-  itemprenom = '';
-  itemnombre = '';
-  itemadresse = '';
-  iteminformation = '';
-
-  items: Observable<any[]>;
-  donForm: FormGroup;
+ public itemtitre = '';
+ public itemnom = '';
+ public itemprenom = '';
+ public itemnombre = '';
+ public itemadresse = '';
+ public iteminformation = '';
+ public  don:Don[]=[]
+ public items: Observable<any[]>;
+ public  donForm: FormGroup;
+ 
 constructor(private fb: FormBuilder, 
   private db: AngularFireDatabase,
   public afs:AngularFirestore,
-  private modalService: NgbModal) { 
+  private modalService: NgbModal,
+  public pubservice: PublicationService) { 
 this.items = this.afs.collection('don').valueChanges()
 // Passing in MD_Bootstrap form validation 
       this.donForm = fb.group({
@@ -38,12 +42,26 @@ this.items = this.afs.collection('don').valueChanges()
 
    });
   }
+  ngOnInit() {
+
+    this.pubservice.getlivredon().subscribe(actionArray => {
+      this.don = actionArray.map(item => {
+        return {
+          uid: item.payload.doc.id,
+          ...item.payload.doc.data()
+        } as Don;
+      })
+    });
+   
+  }
+
   openAddDonModal() {
     const modalRef = this.modalService.open(AddDonComponent, { size: 'lg' });
     //modalRef.componentInstance.name = 'World';
   }
 // Pushing the contact-form to the firebase data base
      onSubmit()  {
+       console.log('hi')
      this.afs.collection('don').add({ 
        nom: this.itemnom,
        prenom: this.itemprenom,
@@ -54,4 +72,6 @@ this.items = this.afs.collection('don').valueChanges()
 //Popup message
      alert('Merci de nous avoir donnés vos livres')
      this.donForm.reset();
-    }}
+    }
+    
+  }

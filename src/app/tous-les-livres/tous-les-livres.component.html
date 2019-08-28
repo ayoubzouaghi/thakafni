@@ -4,9 +4,8 @@
 
 
 
-  <div class="card border-info mb-3 col-md-8">
+  <!----<div class="card border-info mb-3 col-md-8">
     <div class="card-header bg-transparent border-info">
-      <div class="row">
         
     <div class="card-body">
       <div class="row">
@@ -24,22 +23,48 @@
       </div>
     </div>
     <div class="card-footer bg-transparent border-info footer-text">dernière modification le 25 juin 2019</div>
-  </div>
-
-
-
-  <div class="container">
-      <div class="comment-box">
-        <div class="comment-form">
-          <form>
-            
-            <div>
-              <textarea id="comment" rows="3" cols="30" placeholder="ajouter un commentaire ici"></textarea>
+!-->
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-md-8">
+        <article class="blog-card">
+          <div class="blog-card__background">
+            <div class="card__background--wrapper">
+              <img class="card__background--main" src="../assets/livreimg/changerleau.jpg">
+              <div class="card__background--layer"></div>
             </div>
-            <button type="submit">COMMENT</button>
-          </form>  
-        </div>
-       
+          </div>
+          <div class="blog-card__head">
+            <span class="date__box">
+              <span class="date__day">{{list.categorie}}</span>
+            </span>
+          </div>
+          <div class="blog-card__info">
+            <h5 style="color: coral">Les détais des publications</h5>
+            <div style="font-size: 120%">
+                Titre du livre : {{list.titrelivre}}<br>
+              Auteur: {{list.auteur}}<br>
+              Langue : {{list.langue}}<br>
+              Adresse : {{list.adresse}}<br>
+              Ville :  {{list.ville}}<br>
+              Code Postale : {{list.code_postale}}<br>
+              Edition : {{list.edition}}<br>
+              Déscription : {{list.description}}<br>
+
+            </div>
+            
+          </div>
+        </article>
       </div>
-    </div>
 </div>
+
+</div>
+<section class="detail-page">
+    <div class="container mt-5">
+  
+    </div>
+  </section>
+</div>
+
+
+  

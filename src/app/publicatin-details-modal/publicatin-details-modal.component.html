@@ -1,4 +1,4 @@
-<div *ngIf="lists!=null">
+<div *ngFor="let list of publication " >
 
 <div class="modal-header">
         <h4 class="modal-title">Les details du publication</h4>
@@ -12,17 +12,17 @@
                     <div class="col-md-4">
                   <img style="width: 75%;" src="../assets/exemple.jpg"></div>
                   <div class="col-md-8">
-                  <h5 class="card-title">{{lists.titrelivre}} </h5>
+                  <h5 class="card-title">{{list.titrelivre}} </h5>
                   <div class="card-text">
-                      <p>Auteur :  {{lists.auteur}}</p>
-                    <p>Langue : {{lists.langue}}</p>
-                    <p>Catégorie : {{lists.categorie}}</p>
-                    <p>Adresse : {{lists.adresse}}</p>
-                    <p>Edition du livre : {{lists.edition}}</p>
+                      <p>Auteur :  {{list.auteur}}</p>
+                    <p>Langue : {{list.langue}}</p>
+                    <p>Catégorie : {{list.categorie}}</p>
+                    <p>Adresse : {{list.adresse}}</p>
+                    <p>Edition du livre : {{list.edition}}</p>
 
-                    <p>Description : {{lists.description}}</p>
-                    <p>Code postale : {{lists.code_postale}}</p>
-                    <p>Ville : {{lists.ville}}</p>
+                    <p>Description : {{list.description}}</p>
+                    <p>Code postale : {{list.code_postale}}</p>
+                    <p>Ville : {{list.ville}}</p>
 
                 </div>
               </div>

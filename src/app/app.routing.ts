@@ -18,15 +18,23 @@ import { Profile } from 'selenium-webdriver/firefox';
 import { ListeLivreDedonComponent } from './views/liste-livre-dedon/liste-livre-dedon.component';
 import { TousLesLivresComponent } from './tous-les-livres/tous-les-livres.component';
 import { ChatComponent } from './views/chat/chat.component';
+import { FirstLayoutComponent } from './first-layout/first-layout.component';
+import { NouveauteComponent } from './nouveaute/nouveaute.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'first-layout',
     pathMatch: 'full',
   },
 
-
+  {
+    path: 'first-layout',
+    component: FirstLayoutComponent,
+    data: {
+      title: 'firstlayout page'
+    }
+  },
   {
     path: 'login',
     component: LoginComponent,
@@ -34,6 +42,7 @@ export const routes: Routes = [
       title: 'Login Page'
     }
   },
+  
   {
     path: 'register',
     component: RegisterComponent,
@@ -98,37 +107,13 @@ export const routes: Routes = [
         },
       },
       {
-        path: 'base',
-        loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule)
+        path: 'nouveaute',
+        component: NouveauteComponent,
+        data: {
+          title: 'Nouveauté'
+        }
       },
-      {
-        path: 'buttons',
-        loadChildren: () => import('./views/buttons/buttons.module').then(m => m.ButtonsModule)
-      },
-      {
-        path: 'charts',
-        loadChildren: () => import('./views/chartjs/chartjs.module').then(m => m.ChartJSModule)
-      },
-      {
-        path: 'dashboard',
-        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
-      },
-      {
-        path: 'icons',
-        loadChildren: () => import('./views/icons/icons.module').then(m => m.IconsModule)
-      },
-      {
-        path: 'notifications',
-        loadChildren: () => import('./views/notifications/notifications.module').then(m => m.NotificationsModule)
-      },
-      {
-        path: 'theme',
-        loadChildren: () => import('./views/theme/theme.module').then(m => m.ThemeModule)
-      },
-      {
-        path: 'widgets',
-        loadChildren: () => import('./views/widgets/widgets.module').then(m => m.WidgetsModule)
-      },
+     
 
       
       {

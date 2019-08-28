@@ -11,5 +11,6 @@ code_postale:number;
 description:string;
 edition:string;
 user_id : string;
-photo:string // id de l'utilisateur qui a publié l'annonce 
+photo:string;
+publication_date:Date // id de l'utilisateur qui a publié l'annonce 
 }

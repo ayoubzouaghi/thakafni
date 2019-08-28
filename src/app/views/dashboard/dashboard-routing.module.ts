@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './dashboard.component';
+import { FirstLayoutComponent } from '../../first-layout/first-layout.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent,
+    component: FirstLayoutComponent,
     data: {
       title: 'Dashboard'
     }

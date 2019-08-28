@@ -11,16 +11,19 @@ import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/fire
   styleUrls: ['./recherche.component.scss']
 })
 export class RechercheComponent implements OnInit {
+  
   rechercheform: FormGroup;
   publication: Publication[]
   pubs: Publication
   titrelivre: string;
   filtertext: string;
   auteursearch: string
-
+  testi: boolean
+  public hidden: boolean = true
   constructor(public fb: FormBuilder, public pubservice: PublicationService, public firestore: AngularFirestore) { }
 
   ngOnInit() {
+
     this.rechercheform = this.fb.group({
       titre: ['', [Validators.required]],
       auteur: ['', [Validators.required]],
@@ -54,4 +57,21 @@ export class RechercheComponent implements OnInit {
     });
 
   }
+
+  toggleResults(event) {
+    
+    if (event.target.value.length == 0) {
+      this.hidden = true
+    }else{
+      this.hidden=false
+    }
+  }  /*test(){
+    if (this.filtertext.length==null){
+      this.testi=false
+  }else{
+    this.testi= true;
+  }
+  return this.testi
+}
+*/
 }

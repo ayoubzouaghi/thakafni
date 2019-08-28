@@ -1,0 +1,301 @@
+
+<app-header class="header" [navbarBrandRouterLink]="['/first-layout']" [fixed]="true"
+    [navbarBrandFull]="{src: 'assets/img/brand/logo.svg', width: 89, height: 25, alt: 'CoreUI Logo'}"
+    [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'CoreUI Logo'}"
+    [sidebarToggler]="'lg'" [asideMenuToggler]="'lg'">
+    <link rel="manifest" href="/manifest.json">
+    <ul class="nav navbar-nav d-md-down-none" >
+        <li class="nav-item px-3">
+            <a class="nav-link" href="/first-layout">Accueil</a>
+        </li>
+        <li class="nav-item px-3" (click)="Redirect()"> 
+            <a class="nav-link" >Déposer un livre</a>
+        </li>
+        <li class="nav-item px-3">
+            <a class="nav-link" href="/recherche">Chercher un livre</a>
+        </li>
+        <li class="nav-item px-3" (click)="Redirect1()">
+            <a class="nav-link" >Don</a>
+        </li>
+        <li class="nav-item px-3">
+                <a class="nav-link" href="/tous-les-livres">Tous Les Livres</a>
+            </li>
+        <li class="nav-item px-3">
+            <a class="nav-link" href="/nouveaute">Nouveautés</a>
+        </li>
+        <li class="nav-item px-3">
+            <a class="nav-link" href="/contact">Contact</a>
+        </li>
+
+
+    </ul>
+    <ul class="nav navbar-nav ml-auto" *ngIf="!isLogged">
+        <li class="nav-item px-3">
+            <a class="nav-link" href="/login">Se connecter</a>
+        </li>
+        <li class="nav-item px-3">
+            <a class="nav-link" href="/register">Inscription</a>
+        </li>
+     
+       
+    </ul>
+    <ul class="nav navbar-nav ml-auto" *ngIf="isLogged">
+           
+        
+            <li class="nav-item dropdown" dropdown placement="bottom right">
+              <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
+                dropdownToggle (click)="false" >
+                <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com" />
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+        
+                <div class="dropdown-header text-center"><strong>A propos</strong></div>
+                <a class="dropdown-item" href="/profile"><i class="fa fa-user"></i> Profile</a>
+                <a class="dropdown-item"  (click)="onSignOut()"><i class="fa fa-lock"></i> Se deconnecter</a>
+              </div>
+            </li>
+          </ul>
+</app-header>
+<div class="body">
+
+<!--Image avec barre de recherche-->
+<div class="row"  >
+    <img src="../../assets/img/image1.jpg" style="width:100%; padding: 8px; height: 320px;" class="img" >
+    <span style="margin-top: -253px; margin-left: 7%;color: white; font-size : 42px; font-weight: 700">THAKAFNI est là
+        <br>
+        pour faciliter vos lectures</span>
+    <form>
+        <div class="row">
+
+            <input type="text" class="search-input1" placeholder=" Chercher par titre, auteur, adresse, langue etc...">
+
+            <select class="search-input2">
+                <option>Romans</option>
+                <option>Comics</option>
+                <option>Livres de cuisine </option>
+                <option>livres de jeunesses</option>
+                <option>lettre</option>
+                <option>Droits</option>
+            </select>
+            <button class="btn btn-primary"
+                style="margin-top: -108px; margin-left: 1177px; width: 15%; height: 80%;" (click)="openrecherche()">Rechercher&nbsp; &nbsp;<img
+                    src="../../assets/img/search.svg" style="width: 10px; height: 10px"></button>
+        </div>
+    </form>
+</div>
+
+<!--Les deux boutons de déposer un livre et recherche-->
+<div class="row" style="padding: 34px">
+    <div class="card w-50">
+        <div class="card-body">
+            <h5 class="card-title text-center">Déposer un livre</h5>
+            <p class="card-text text-center">DÉPOSEZ VOS LIVRES POUR L’ÉCHANGE, L’EMPRUNT OU LA VENTE À PROXIMITÉ</p>
+            <img src="../../assets/img/arrow.svg"
+                style="width: 25px; height:25px;margin-left: 48%; margin-bottom: 4%;" (click)="Redirect()"><br>
+        </div>
+    </div>
+
+    <div class="card w-50">
+        <div class="card-body">
+            <h5 class="card-title text-center">Rechercher un livre</h5>
+            <p class="card-text text-center">RECHERCHER UN LIVRE POUR L’ÉCHANGE, L’EMPRUNT OU LA VENTE À PROXIMITÉ</p>
+            <img src="../../assets/img/search.svg"
+                style="width: 25px; height:25px;margin-left: 48%; margin-bottom: 4%;" (click)="openrecherche()"><br>
+        </div>
+    </div>
+</div>
+
+<!--Card de don et de connexion-->
+<div class="row " style="padding: 40px;margin-top: -55px;">
+    <div class="card mb-3" style="width: 742px;">
+        <img src="../../assets/img/don.jpg" class="card-img-top" alt="..." style="height: 184px;">
+        <div class="card-body">
+            <h5 class="card-title text-center" style="color: #0062cc">Don</h5>
+            <p class="card-text">
+                - Vous déménagez et vous avez des cartons de livres à vous débarrasser ? <br>
+                - Vos livres prennent la poussière et de la place ? <br>
+                - Les examens sont terminés et vos livres scolaires ne vous servent plus ? <br>
+                Ne jetez plus vos livres et donnez leurs une nouvelle vie en faisant un don à Thakafni !<br>
+                Grace à vos dons de livres, vous allez faire des heureux !
+            </p>
+            <button class="login-button" (click)="Redirect1()">Ajouter un don</button>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>
+
+    <div class="card text-white bg-info mb-3" style="max-width: 18rem; height: 438px; margin-left: 4%">
+        <div class="card-header">REJOIGNEZ-NOUS MAINTENANT !</div>
+        <div class="card-body">
+            <p class="card-text" style="font-size: 20px">Échangez, empruntez ou vendez vos livres à proximité de
+                chez-vous ! Finis les frais
+                d’envois ou l’attente des colis ! Consultez la bibliothèque en ligne et écoulez vos livres avec des
+                lecteurs près de chez vous !
+            </p>
+            <button class="btn btn-primary" style="margin-left: 20%" routerLink="/register">Créer un compte</button>
+        </div>
+    </div>
+
+
+    <div class="card text-white bg-secondary mb-3" style="max-width: 18rem; height: 438px; margin-left: 4%">
+        <div class="card-header">BESOIN D'INFORMATION !</div>
+        <div class="card-body">
+            <p class="card-text" style="font-size: 20px">En cas de besoin, vous pouvez nous contacter.Échangez,
+                empruntez ou vendez vos livres à proximité de chez-vous ! Finis les frais
+                d’envois ou l’attente des colis !
+            </p>
+            <button class="btn btn-primary" style="margin-left: 20%" routerLink="/contact">Contactez nous</button>
+        </div>
+    </div>
+</div>
+
+<!--Publications récentes-->
+
+<div class="recent-pub" style="padding : 40px">
+    <div class="wpb_wrapper">
+        <div
+            class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_pos_align_center vc_sep_color_sky heading-home vc_separator-has-text">
+            <span class="vc_sep_holder vc_sep_holder_l">
+                <span class="vc_sep_line">
+                </span></span>
+            <h4 class="title">Les publications les plus récentes</h4>
+            <span class="vc_sep_holder vc_sep_holder_r">
+                <span class="vc_sep_line"></span>
+            </span>
+        </div>
+    </div>
+
+    <div class="card-deck">
+        <div *ngFor="let list of publication">
+
+            <div class="card" style="width: 250px">
+
+                <img src="../../assets/img/exemple_book.jpg" class="card-img-top" style="height: 50%" alt="...">
+                <div class="card-body">
+
+                    <h5 class="card-title">Ahmed Saleh</h5>
+                    <p class="card-text">
+                        titre: {{list.titrelivre}}<br>
+                        Adresse : {{list.adresse}} <br>
+                        Auteur : {{list.auteur}}<br>
+                        Langue : {{list.langue}} <br>
+                        Catégorie : {{list.categorie}}<br>
+                        Déscription: {{list.description}}<br><br>
+                        <button class="btn btn-primary">Contacter</button>
+
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
+<!--Réseaux sociaux-->
+<div style="padding:40px">
+    <div class="wpb_wrapper">
+        <div
+            class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_pos_align_center vc_sep_color_sky heading-home vc_separator-has-text">
+            <span class="vc_sep_holder vc_sep_holder_l">
+                <span class="vc_sep_line">
+                </span></span>
+            <h4 class="title">REJOIGNEZ-NOUS</h4>
+            <span class="vc_sep_holder vc_sep_holder_r">
+                <span class="vc_sep_line"></span>
+            </span>
+        </div>
+    </div>
+    <div class="box">
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+
+                    <div class="box-part text-center">
+
+                        <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
+
+                        <div class="title">
+                            <h4>Instagram</h4>
+                        </div>
+
+                        <div class="text">
+                            <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr
+                                scripta
+                                ocurreret qui ad.</span>
+                        </div>
+
+                        <a href="#">Learn More</a>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+
+                    <div class="box-part text-center">
+
+                        <i class="fa fa-twitter fa-3x" aria-hidden="true"></i>
+
+                        <div class="title">
+                            <h4>Twitter</h4>
+                        </div>
+
+                        <div class="text">
+                            <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr
+                                scripta
+                                ocurreret qui ad.</span>
+                        </div>
+
+                        <a href="#">Learn More</a>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+
+                    <div class="box-part text-center">
+
+                        <i class="fa fa-facebook fa-3x" aria-hidden="true"></i>
+
+                        <div class="title">
+                            <h4>Facebook</h4>
+                        </div>
+
+                        <div class="text">
+                            <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr
+                                scripta
+                                ocurreret qui ad.</span>
+                        </div>
+
+                        <a href="#">Learn More</a>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+
+                    <div class="box-part text-center">
+
+                        <i class="fa fa-pinterest-p fa-3x" aria-hidden="true"></i>
+
+                        <div class="title">
+                            <h4>Pinterest</h4>
+                        </div>
+
+                        <div class="text">
+                            <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr
+                                scripta ocurreret qui ad.</span>
+                        </div>
+
+                        <a href="#">Learn More</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></div>

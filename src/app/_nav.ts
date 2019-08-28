@@ -32,7 +32,7 @@ export interface NavData {
 export const navItems: NavData[] = [
   {
     name: 'Thakafni',
-    url: '/dashboard',
+    url: '/first-layout',
     icon: 'icon-home',
     
 
@@ -48,7 +48,7 @@ export const navItems: NavData[] = [
   {
     name: 'Déposer un livre',
     url: '/deposit',
-    icon: 'icon-cursor',
+    icon: 'icon-plus',
 
   },
   {

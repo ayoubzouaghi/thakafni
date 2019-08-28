@@ -7,7 +7,6 @@
             <div class="card-body p-4">
               <form [formGroup]="loginform">
                 <h1>Se connecter</h1>
-                <a routerLink='/register'>Vous n'avez pas de compte?</a>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-user"></i></span>
@@ -36,7 +35,9 @@
                   <div class="col-6 text-right">
                     <button type="button" class="btn btn-link px-0" (click)="resetPassword()">Mot de passe
                       oublié?</button>
-                  </div>
+                  </div><br><br>
+                  <a routerLink='/register'>Inscrivez-vous gratuitement</a>
+
                 </div>
               </form>
             </div>

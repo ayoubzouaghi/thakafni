@@ -69,6 +69,8 @@ import { ChatComponent } from './views/chat/chat.component';
 import { ChatService } from './chat.service';
 import { AddDonComponent } from './add-don/add-don.component';
 import { MyfilterPipe } from './myfilter.pipe';
+import { FirstLayoutComponent } from './first-layout/first-layout.component';
+import { NouveauteComponent } from './nouveaute/nouveaute.component';
 
 @NgModule({
   imports: [
@@ -117,9 +119,12 @@ import { MyfilterPipe } from './myfilter.pipe';
     TousLesLivresComponent,
     ChatComponent,
     AddDonComponent,
-    MyfilterPipe
+    MyfilterPipe,
+    FirstLayoutComponent,
+    NouveauteComponent,
   ],
-  entryComponents: [EditProfilPictureModalComponent,AddDonComponent,EditProfilCoordonneeModalComponent,DeletePublicationModalComponent,UpdatePublicationModalComponent,PublicatinDetailsModalComponent],
+  entryComponents: [
+    EditProfilPictureModalComponent,AddDonComponent,EditProfilCoordonneeModalComponent,UpdatePublicationModalComponent,PublicatinDetailsModalComponent],
   providers: [AuthService,PublicationService,MessagingService, AsyncPipe,ChatService],
   bootstrap: [AppComponent]
 })

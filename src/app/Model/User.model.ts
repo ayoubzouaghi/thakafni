@@ -4,6 +4,7 @@ export class User {
    public email: string;
    public uid: string;
    public nom: string;
+   public prenom:string;
    public photoURL: string;
    public verified: boolean;
    public emailToken: string;

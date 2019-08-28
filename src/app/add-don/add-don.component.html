@@ -5,37 +5,54 @@
               Don de livres</h4>
           </div>
           <div class="card-body">
-            <form >
-    
+            <form [formGroup]="donForm" >
+                    <div class="form-group">
+                      <label>Titre du livre *</label>
+                      <input type="text" class="form-control" formControlName="titre" class="form-control" mdbInputDirective
+                      [(ngModel)]="itemtitre" >
+                     
+                    </div>
+                    <div class="form-group">
+                      <label >Nom *</label>
+                      <input type="text" class="form-control" formControlName="nom" class="form-control" mdbInputDirective
+                      [(ngModel)]="itemnom">
+                    
+                      </div>
+                      <div class="form-group">
+                      <label>Prénom *</label>
+                      <input type="text" class="form-control"   class="form-control" formControlName="prenom" class="form-control" mdbInputDirective
+                      [(ngModel)]="itemprenom">
+                    
+                    </div>
               <div class="row">
                 <div class="col-md-6">
 
                   <div class="form-group">
                     <label>Nombre des livres *</label>
                     <input type="number" class="form-control" class="form-control"
-                      class="form-control" mdbInputDirective >
+                      class="form-control" mdbInputDirective  [(ngModel)]="itemnombre" formControlName="nombre">
                   </div>
     
                   <div class="form-group">
                     <label>Adresse *</label>
                     <input type="text" class="form-control" class="form-control"
-                      class="form-control" mdbInputDirective >
+                      class="form-control" mdbInputDirective  [(ngModel)]="itemadresse"  formControlName="adresse">
                   </div>
     
                   <div>
                     <label>Informations à préciser :</label>
                     <textarea class="form-control rounded-0" rows="3" cols="50" class="form-control"
-                      class="form-control" mdbInputDirective ></textarea>
+                      class="form-control" mdbInputDirective  [(ngModel)]="iteminformation" formControlName="information"></textarea>
                   </div>
     
                 </div>
     
               </div>
               <br><br>
-              <button type="submit" class="btn btn-primary">Je donne mes livres</button>
+              <button type="submit" class="btn btn-primary" (click)="onSubmit()">Je donne mes livres</button>
+              
             </form>
-    
+                    </div>
     
           </div>
         </div>
-      </div>

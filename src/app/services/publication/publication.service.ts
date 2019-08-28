@@ -17,7 +17,7 @@ export class PublicationService {
   user:User;
   Pub:Publication;
   pub: Observable<Publication | null>;
-  pubDoc: AngularFirestoreDocument<User>;
+  pubDoc: AngularFirestoreDocument<Publication>;
   publicationCollection: AngularFirestoreCollection<any> = this.firestore.collection('publication');
   pubobs = this.publicationCollection.valueChanges();
   pubs = firebase.firestore().collection('Publication');
@@ -27,15 +27,13 @@ export class PublicationService {
     public afAuth: AngularFireAuth,
     private router :Router) { 
    this.publicationCollection = this.firestore.collection('publication');
-
     }
 
 // ADD 
 
   addPublication(pub:Publication[]){
-
+    
     this.firestore.collection("publication").add(pub).then(() => {
-     
       this.router.navigate(['/profile']);
   })}
 
@@ -46,41 +44,33 @@ getPublication(){
 }
 
 
-getbyid(){
+getPubByTitre(pub){
 
 
-this.docRef.get().subscribe((res) =>{
-  console.log(res.data)
-    if (res.exists) {
-        console.log("Document data:", res.data());
-    } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-    }
-})
+this.docRef=this.firestore.doc((`publication/${pub.titrelivre}`))
 }
 //DELETE
 
 
 
-deletePub(pub) {
-
-  this.publicationCollection.doc(pub.uid).delete().then(() => {
+deletePub(pub:Publication) {
+  this.pubDoc= this.firestore.doc((`publication/${pub.uid}`));
+  this.pubDoc.delete().then(() => {
     console.log('deleted');
   })
 }
 //UPDATE
-update(pub) {
-  this.publicationCollection.doc(pub.uid).update({
-    titrelivre: 'newprodname',
-    auteur: 'newprodname',
-    edition: 'newprodname',
-    type_annonce: 'newprodname',
-    adresse: 'newprodname',
-    ville: 'newprodname',
-    code_postale: 'newprodname',
-    langue: 'newprodname',
-    description: 'newprodname',
+updatePub(publication) {
+  this.publicationCollection.doc(publication.uid).update({
+    titrelivre: publication.titrelivre,
+    auteur: publication.auteur,
+    edition: publication.edition,
+    type_annonce: publication.type_annonce,
+    adresse:publication.adresse,
+    ville: publication.ville,
+    code_postale: publication.code_postale,
+    langue:publication.langue,
+    description:publication.description,
 
 
   }).then(() => {

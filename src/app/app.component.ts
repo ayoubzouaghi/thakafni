@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from './services/Auth/auth.service';
+import * as $ from 'jquery';
 
 @Component({
   // tslint:disable-next-line

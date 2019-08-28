@@ -8,6 +8,7 @@ import { PublicationService } from '../../services/publication/publication.servi
 import { Publication } from '../../Model/Publication.model';
 import { User } from '../../Model/User.model';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { navItems } from '../../_nav';
 
 
 @Component({
@@ -17,9 +18,14 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class DepositComponent implements OnInit {
   deposeform: FormGroup;
+
   pub: Publication[]
   booksSubscription: Subscription;
   list: Publication[]
+  public navItems = navItems;
+  public sidebarMinimized = true;
+  private changes: MutationObserver;
+  public element: HTMLElement;
   constructor(
     private pubservice: PublicationService,
     private router: Router,
