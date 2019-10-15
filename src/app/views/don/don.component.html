@@ -1,32 +1,36 @@
 
 <div class="row">
-  <div class="col-md-12">
-<div class="animated fadeIn">
+  <div class="col-md-8 scrollable">
     <div *ngFor="let d of don">
 
-  <div class="card border-info mb-3 col-md-6">
+  <div class="card border-info mb-3">
     <div class="card-body">
       <div class="row">
         <div class="col-md-12">
           <h5 class="card-title">Publié par {{d.nom}}</h5>
           <div class="card-text">
-            <p>{{d.nom}} a déposé {{d.nombre_de_livre}} livres pour faire un don. Veuillez lui contacter pour avoir plus de détails.</p>
-            <button class="btn btn-primary" style="margin-left: 88%;">Contacter</button>
+            <p>{{d.nom}} {{d.prenom}} a déposé {{d.nombre_de_livre}} livres de "{{d.titre}}"" pour faire un don. Veuillez lui contacter pour avoir plus de détails
+      
+            </p>
+            <div *ngIf="show">
+              Numero de tel : {{d.tel}}<br>
+              Email : {{d.email}}
+            </div>
+            <button class="btn btn-primary" style="margin-left: 88%;" (click)="showMe()">Contacter</button>
           </div>
         </div>
       </div>
     </div>
-    <div class="card-footer bg-transparent border-info footer-text">Dernière modification le 25 juin 2019</div>
   </div>
   
 </div>
 
 </div>
-</div>
-<div class="col-md-12" >
 
-<button class="btn btn-primary"  (click)="openAddDonModal()">+ Ajouter un don</button>
-        <div class="card" style="width: 40%; margin-left: 60%; margin-bottom: 150%">
+<div class="col-md-4" >
+
+<button class="btn btn-primary"  (click)="openAddDonModal()" style="margin-left: 261px;">+ Ajouter un don</button>
+        <div class="card" style="width: 103%; margin-left: 1%; margin-top: 12px;">
             <img src="../../assets/img/don.jpg" class="card-img-top" alt="...">
             <div class="card-body" >
                 <h5 class="card-title text-center" style="color: #0062cc">Don</h5>
@@ -39,7 +43,6 @@
                 </p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
-    
           </div>
 </div>
 </div>

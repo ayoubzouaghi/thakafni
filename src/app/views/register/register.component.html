@@ -1,13 +1,12 @@
-<div class="app-body">
+<div class="app-body"  style="background-image: url(../../assets/a.jpg);">
   <main class="main d-flex align-items-center">
     <div class="container">
       <div class="row">
         <div class="col-md-6 mx-auto">
-          <div class="card mx-4">
+          <div class="card mx-4" style="background-color:rgba(0,0,0,.4); ">
             <div class="card-body p-4">
               <form [formGroup]="registerForm">
-                <h1>S'inscrire</h1>
-                <p class="text-muted">Creer vote compte</p>
+                <h1 style="color: white">S'inscrire</h1>
             
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -45,11 +44,11 @@
                 
                 <button type="submit" class="btn btn-block btn-success"  (click)="tryRegister(registerForm.value)">Creer compte</button>
               </form>
-              <a routerLink='/login'>se connecter</a>
+              <a routerLink='/login' style="color: white;text-align: center;">se connecter</a>
               <p class="text-danger" style="color: red">{{errorMessage}}</p>
             </div>
-            <div class="card-footer p-4">
-              <div class="row">
+            <div class="card-footer p-4" style="background-color:rgba(0,0,0,.4); ">
+              <div class="row" >
                 <div class="col-6">
                   <button class="btn btn-block btn-facebook" type="submit" (click)="signupfacebook()"><span>facebook</span></button>
                 </div>

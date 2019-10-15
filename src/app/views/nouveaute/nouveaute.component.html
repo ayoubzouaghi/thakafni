@@ -1,0 +1,318 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <article class="blog-card">
+        <div class="blog-card__background">
+          <div class="card__background--wrapper">
+            <img class="card__background--main" src="../assets/img/LivreLit.jpg">
+            <div class="card__background--layer"></div>
+          </div>
+        </div>
+        <div class="blog-card__head">
+          <span class="date__box">
+            <span class="date__day">11</span>
+            <span class="date__month">JAN</span>
+          </span>
+        </div>
+        <div class="blog-card__info">
+          <h5>Les 4 bienfaits insoupçonnés de la lecture sur la santé</h5>
+          <p>
+            Auteur: Anais Orieul
+
+          </p>
+          <p>Se plonger dans un bon roman permet de voyager sans bouger de son canapé.
+             Mais concrètement, la lecture a-t-elle de réels bienfaits sur notre cerveau et notre intellect ? 
+             Oui, mille fois oui même.
+             Et on vous explique même ce qui se passe dans votre tête quand vous ouvrez un bouquin.
+          </p>
+          <p *ngIf="show"> 1 – La lecture stimule le cerveau
+              Tous les amoureux de la lecture vous le diront : 
+              lire rend heureux... et parfois un peu accro aussi.
+               Et non seulement cette activité est bonne pour le moral, 
+               elle permet aussi de booster notre cerveau. 
+               Tout comme le tricot qui stimule les connexions neuronales
+                et leur permet de fonctionner plus efficacement, 
+                la lecture fait travailler la mémoire et aide à garder
+                 l'esprit plus clair. C'est donc une véritable gymnastique 
+                 du cerveau qui s'opère lorsqu'on se plonge dans un bouquin.
+                 Selon un article paru sur la version US du Huffington Post, 
+                 lire régulièrement aiderait même à réduire la détérioration cognitive de 32%. 
+                 Bref, si vous voulez garder vos méninges en bonne santé, ouvrez un livre.
+                <br>
+                2 – La lecture réduit les risques d'Alzheimer
+                Lire n'est pas le remède miracle à certaines maladies neurodégénératives.
+                 Néanmoins, une étude publiée en 2001 dans le journal scientifique 
+                 Proceedings of the National Academy of Sciences rapporte que les personnes 
+                 qui s'adonnent à certaines activités intellectuelles - comme les puzzles, 
+                 les échecs, ou la lecture – seraient 2,5% moins susceptibles que les autres de
+                  développer la maladie d'Alzheimer ou la démence. Robert P. Friedland,
+                   l'un des chercheurs en charge de l'étude, estime que le cerveau fonctionne 
+                   comme n'importe quel autre organe du corps. Il a tout simplement besoin 
+                   d'être stimulé pour ne pas s'user trop vite. "Tout comme une activité physique renforce le coeur, 
+                   les muscles et les os, une activité intellectuelle 
+                renforce le cerveau et l'aide à lutter contre certaines maladies", conclut le professeur.
+                <br>
+
+3 – La lecture rend empathique
+Vous avez parfois du mal à décrypter les émotions des autres,
+ et surtout, à éprouver de l'empathie pour eux ? 
+ Vous êtes peut-être légèrement sociopathe...
+  ou alors, vous avez juste besoin de lire un peu plus souvent.
+   Un article paru en 2013 dans Science Mag indique ainsi que lire spécifiquement de la fiction permet de développer son côté altruiste. Comment, pourquoi ? Tout simplement parce que ce type d'histoires plongent généralement le lecteur dans les émotions et les pensées des personnages. Ainsi, on se met plus facilement à la place des autres, on apprend à mieux les comprendre, et donc, en développe notre réponse émotionnelle. Comme quoi, si la lecture est une activité qui se pratique en solitaire, cela ne l'empêche de pas de faciliter les relations humaines.
+              </p>
+          <a (click)="showMe()" class="btn btn--with-icon"><i class="btn-icon fa fa-long-arrow-right"></i>Lire la
+            suite</a>
+        </div>
+      </article>
+    </div>
+    <div class="col-md-6">
+      <article class="blog-card">
+        <div class="blog-card__background">
+          <div class="card__background--wrapper">
+            <img class="card__background--main" src="../assets/img/top5.jpg">
+            <div class="card__background--layer"></div>
+          </div>
+        </div>
+        <div class="blog-card__head">
+          <span class="date__box">
+            <span class="date__day">20</span>
+            <span class="date__month">FEV</span>
+          </span>
+        </div>
+        <div class="blog-card__info">
+          <h5>Top 5 des livres les plus vendus au monde</h5>
+          <p>
+            Auteur: Inconnu
+
+          </p>
+          <p>Si la Bible et le Coran restent indétrônables depuis des siècles, d'autres romans se sont rapidement fait une place dans le classement, 
+            et ce en seulement quelques années. De même, on y retrouve de nombreux classiques de la littérature.</p>
+          <div class="a" *ngIf="show1">
+            <h4>La Bible (4 milliards d'exemplaires)</h4><br>
+          <p>  Livre sacré pour la religion juive et le christianisme, la Bible reste à ce jour le livre le plus vendu de tous les temps. Elle contient le Nouveau Testament et l'Ancien Testament, ce dernier étant apparenté à la Bible hébraïque. Celle-ci est nommée « TaNaKh », venant de la contraction du titre de trois de ses parties : la « Torah », les « Neviim » et les « Ketouvim ». Par ailleurs, la Bible diffère selon les courants religieux. Ainsi, la version protestante comporte 66 livres, quand le canon orthodoxe éthiopien en compte 81.
+
+            De même, une des versions la plus éditée est une traduction en anglais titrée la « Bible du roi Jacques » (« The King James Bible »). Celle-ci a été réalisée à partir d'un texte grec rédigé par Erasme. Selon le site anglais Love Reading, plus de 2,5 milliards d'exemplaires ont été publiés dans le monde.</p><br><br>
+
+            <h4>Le Coran (+ de 3 milliards d'exemplaires)</h4><br>
+           <p> Considéré par les Musulmans comme le premier manuscrit en langue arabe, le Coran aurait été écrit par le prophète Mahomet suivant les instructions de l'archange Gabriel. Il est également appelé « Al-kitâb » (« Le livre ») ou « Adh-dhikr » (« Le rappel »). Si la croyance veut que Mahomet l'ait entièrement écrit avant sa mort en 632, les faits diffèrent d'un point de vue historique. 
+
+            Le Grand Larousse encyclopédique précise que « certaines parties
+             du Coran oralement transmises sont notées par écrit à Médine par les proches de Mahomet ; 
+             la tradition rapporte que des branches de palmier, des pierres plates, des feuilles de papyrus,
+              voire des omoplates de chameau ont été les premiers supports du texte coranique. Dans les années 650-655,
+               sous Uthman, le troisième calife, est établie la version définitive du Coran ». Par ailleurs,
+             plus de 398 éditions ont été publiées depuis et les textes ont été traduits dans plus de 50 langues.</p><br><br>
+
+             <h4>« Les Citations du Président Mao Tse-Toung » (800 millions d'exemplaires)</h4><br>
+             <p>
+                Également appelé « Petit Livre Rouge » en-dehors de la Chine, 
+                ce livre a été publié en 1964 par le gouvernement de la République populaire de Chine. 
+                Il compile diverses citations tirées des discours, des interventions orales et écrites de Mao Zedong, 
+                ayant dirigé le pays. Traduit dans 20 langues et possédant plus de 34 éditions, 
+                il était obligatoire dans le programme scolaire de la primaire aux études supérieures, 
+                durant la Grande révolution culturelle lancé par Mao Tse-Toung, en 1966. A cette époque, des groupes de travail dans les entreprises, 
+                les institutions et le secteur agricole se formaient également pour l'étudier, durant les heures de travail.</p><br><br>
+
+                <h4>« Don Quijote de la Mancha », Miguel de Cervantes (500 millions d'exemplaires)</h4><br>
+                <p>L’œuvre de Miguel de Cervantes a pour véritables titres « L'ingénieux Hidalgo Don Quichotte de la Manche » (« El ingenioso Hidalgo Don Quixote de la Mancha »). Publié en partie entre 1605 et 1615, le roman raconte l'histoire d'Alonso Quichano féru de livres de chevalerie. Celui-ci  finit par se prendre pour un chevalier et décide de parcourir l'Espagne, avec son acolyte Sancho Panza. Vivant dans l'illusion d'un monde empli de princesses, de châteaux et de magie, il paraît fou à quiconque le croise. 
+
+                    Son auteur, quant à lui, s'est évertué à faire passer son roman pour une histoire vraie, 
+                    en précisant qu'une partie du roman était traduite d'un texte en arabe de Cide Hamete Benengeli. 
+                    Toutefois, cet auteur est fictif et sort tout droit de l'imagination de Cervantes.</p><br><br>
+<h4>Saga « Harry Potter », JK Rowling (450 millions d'exemplaires)</h4><br>
+<p>
+    Si le premier tome de la saga Harry Potter n'est arrivé en France qu'en 2000, le phénomène jeunesse du siècle a fait ses premiers pas en Angleterre dès 1997. Ainsi, « Harry Potter à l'école des sorciers » marque le début d'une série de 7 tomes décrivant les aventures d'un jeune sorcier à Poudlard, l'école de magie. Élevé par son oncle et sa tante moldus (non-sorciers), Harry découvre un jour qu'il est sorcier, et pas n'importe lequel. Étant la seule personne ayant survécu à Voldemort, l'un des mages les plus puissants de cet univers, il est considéré comme « l'élu » dans la communauté des sorciers, alors qu'il se fait maltraité chez les Moldus.
+    
+    Ainsi, les sept tomes suivent le parcours scolaire du jeune homme à Poudlard, ainsi que ses différentes confrontations avec Voldemort, afin de le détruire et anéantir la menace que ce dernier fait peser sur le monde des sorciers et des Moldus. 
+    Traduit dans 67 langues et ayant 298 éditions différentes, la saga est la plus vendue du XXIe siècle. </p>
+
+          </div>
+
+          <a (click)="showMe1()" class="btn btn--with-icon"><i class="btn-icon fa fa-long-arrow-right"></i>Lire la
+            suite</a>
+        </div>
+      </article>
+    </div>
+  </div>
+  <section class="detail-page">
+    <div class="container mt-5">
+
+    </div>
+  </section>
+  <div class="row">
+    <div class="col-md-6">
+      <article class="blog-card">
+        <div class="blog-card__background">
+          <div class="card__background--wrapper">
+            <img class="card__background--main" src="../assets/livreimg/lejour.jpg">
+            <div class="card__background--layer"></div>
+          </div>
+        </div>
+        <div class="blog-card__head">
+          <span class="date__box">
+            <span class="date__day">3</span>
+            <span class="date__month">MAR</span>
+          </span>
+        </div>
+        <div class="blog-card__info">
+          <h5>Le jour ou les lions mangeront de la salade verte </h5>
+          <p>
+            Auteur: Raphaëlle Giordano
+          </p>
+          <p>Romane a toujours le trac avant une conférence. Ce jour-là, au moment où elle s'apprête à prendre la parole
+            le micro part dans un terrible larsen. </p>
+          <p *ngIf="show2">Un homme au premier rang s'esclaffe : " Ah ! Les femmes et la technologie... " Romane rend
+            silencieusement grâce à cet homme, qui lui permet de confirmer l'importance et l'ampleur de sa mission :
+            réduire le taux de burnerie. Les symptômes de ce mal aussi bien féminin que masculin sont connus : sentiment
+            de supériorité, égocentrisme, penchant naturel pour les jeux de pouvoir ou les rapports de force, inflation
+            de l'égo, mauvaise foi, etc. C'est parce que les burnés sont légion que Romane a décidé de créer sa société
+            Sup' de burnes, et d'aider ses stagiaires dans leur parcours de déburnerie. Ses méthodes originales et
+            surprenantes ont le vent en poupe. Lors d'une nouvelle session Romane accueille Emilie, Nathalie, Patrick,
+            Bruno, et le charismatique Maximilien Vogue, célèbre PDG d'un des plus grands groupes cosmétiques au monde.
+            Charismatique... et terriblement burné ! Romane aura du pain sur la planche, tant pour l'accompagner à
+            changer que pour lui résister...</p>
+          <a (click)="showMe2()" class="btn btn--with-icon"><i class="btn-icon fa fa-long-arrow-right"></i>Lire la
+            suite</a>
+        </div>
+      </article>
+    </div>
+    <div class="col-md-6">
+      <article class="blog-card">
+        <div class="blog-card__background">
+          <div class="card__background--wrapper">
+            <img class="card__background--main" src="../assets/livreimg/estgrand.jpg">
+            <div class="card__background--layer"></div>
+          </div>
+        </div>
+        <div class="blog-card__head">
+          <span class="date__box">
+            <span class="date__day">6</span>
+            <span class="date__month">MAI</span>
+          </span>
+        </div>
+        <div class="blog-card__info">
+          <h5>Il est grand temps de rallumer les etoiles </h5>
+          <p>
+            Auteur:Virginie Grimaldi
+          </p>
+          <p>Anna, 37 ans, croule sous le travail et les relances des huissiers.
+            Ses filles, elle ne fait que les croiser au petit déjeuner.</p>
+          <p *ngIf="show3">Sa vie défile, et elle l’observe depuis la bulle dans laquelle elle s’est enfermée.
+            À 17 ans, Chloé a des rêves plein la tête mais a choisi d’y renoncer pour aider sa mère. Elle cherche de
+            l’affection auprès des garçons, mais cela ne dure jamais. Comme le carrosse de Cendrillon, ils se
+            transforment après l’amour.<br>
+            Lily, du haut de ses 12 ans, n’aime pas trop les gens. Elle préfère son rat, à qui elle a donné le nom de
+            son père, parce qu’il a quitté le navire.
+            Le jour où elle apprend que ses filles vont mal, Anna prend une décision folle : elle les embarque pour un
+            périple en camping-car, direction la Scandinavie. Si on ne peut revenir en arrière, on peut choisir un autre
+            chemin.<br>
+
+            Anna, Chloé, Lily. Trois femmes, trois générations, trois voix qui se répondent. Une merveille d’humour,
+            d’amour et d’humanité.<br>
+
+            Romancière à succès, Virginie Grimaldi est l’auteure de trois best-sellers, Le Premier Jour du reste de ma
+            vie, Tu comprendras quand tu seras plus grande et Le Parfum du bonheur est plus fort sous la pluie.</p>
+          <a (click)="showMe3()" class="btn btn--with-icon"><i class="btn-icon fa fa-long-arrow-right"></i>Lire la
+            suite</a>
+        </div>
+      </article>
+    </div>
+  </div>
+  <section class="detail-page">
+    <div class="container mt-5">
+
+    </div>
+  </section>
+  <div class="row">
+    <div class="col-md-6">
+      <article class="blog-card">
+        <div class="blog-card__background">
+          <div class="card__background--wrapper">
+            <img class="card__background--main" src="../assets/livreimg/ladesparition.jpg">
+            <div class="card__background--layer"></div>
+          </div>
+        </div>
+        <div class="blog-card__head">
+          <span class="date__box">
+            <span class="date__day">3</span>
+            <span class="date__month">MAR</span>
+          </span>
+        </div>
+        <div class="blog-card__info">
+          <h5>La disparition de stephanie mailer </h5>
+          <p>
+            Auteur : Joël Dicker
+          </p>
+          <p>30 juillet 1994. Orphea, petite station balnéaire tranquille des Hamptons dans l’État de New York, est
+            bouleversée par un effroyable fait divers</p>
+          <p *ngIf="show4">le maire de la ville et sa famille sont assassinés chez eux, ainsi qu’une passante, témoin
+            des meurtres.
+            L’enquête, confiée à la police d’État, est menée par un duo de jeunes policiers, Jesse Rosenberg et Derek
+            Scott. Ambitieux et tenaces, ils parviendront à confondre le meurtrier, solides preuves à l’appui, ce qui
+            leur vaudra les louanges de leur hiérarchie et même une décoration.<br>
+            Mais vingt ans plus tard, au début de l’été 2014, une journaliste du nom de Stephanie Mailer affirme à Jesse
+            qu’il s’est trompé de coupable à l’époque.
+            Avant de disparaître à son tour dans des conditions mystérieuses.<br>
+
+            Qu’est-il arrivé à Stephanie Mailer ?
+            Qu’a-t-elle découvert ?
+            Et surtout: que s’est-il vraiment passé le soir du 30 juillet 1994 à Orphea ?</p>
+          <a (click)="showMe4()" class="btn btn--with-icon"><i class="btn-icon fa fa-long-arrow-right"></i>Lire la
+            suite</a>
+        </div>
+      </article>
+    </div>
+    <div class="col-md-6">
+      <article class="blog-card">
+        <div class="blog-card__background">
+          <div class="card__background--wrapper">
+            <img class="card__background--main" src="../assets/livreimg/latresse.jpg">
+            <div class="card__background--layer"></div>
+          </div>
+        </div>
+        <div class="blog-card__head">
+          <span class="date__box">
+            <span class="date__day">6</span>
+            <span class="date__month">MAI</span>
+          </span>
+        </div>
+        <div class="blog-card__info">
+          <h5> La tresse </h5>
+          <p>
+            Auteur : Laetitia Colombani
+          </p>
+          <p>Trois femmes, trois vies, trois continents. Une même soif de liberté.
+            Inde. Smita est une Intouchable.
+          </p>
+          <p *ngIf="show5">
+            Elle rêve de voir sa fille échapper à sa condition misérable et entrer à l’école.<br>
+
+            Sicile. Giulia travaille dans l’atelier de son père. Lorsqu’il est victime d’un accident, elle découvre que
+            l’entreprise familiale est ruinée.<br>
+
+            Canada. Sarah, avocate réputée, va être promue à la tête de son cabinet quand elle apprend qu’elle est
+            gravement malade.<br>
+
+            Liées sans le savoir par ce qu’elles ont de plus intime et de plus singulier, Smita, Giulia et Sarah
+            refusent le sort qui leur est destiné et décident de se battre. Vibrantes d’humanité, leurs histoires
+            tissent une tresse d’espoir et de solidarité.
+          </p>
+          <a (click)="showMe5()" class="btn btn--with-icon"><i class="btn-icon fa fa-long-arrow-right"></i>Lire la
+            suite</a>
+        </div>
+      </article>
+    </div>
+    <section class="detail-page">
+      <div class="container mt-5">
+
+      </div>
+    </section>
+  </div>
+
+</div>
+
+<section class="detail-page">
+  <div class="container mt-5">
+
+  </div>
+</section>

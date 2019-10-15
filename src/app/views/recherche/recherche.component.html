@@ -7,7 +7,7 @@
     <form [formGroup]="rechercheform">
       <div class="row">
 
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-8">
           <label class="lab">Chercher publication</label>
           <input type="text" class="form-control" formControlName="titre" [(ngModel)]="filtertext"
             placeholder="chercher par titre, auteur, adresse, langue etc..." (input)="toggleResults($event)" >
@@ -15,39 +15,37 @@
 
         </div>
 
-        <div class="form-group col-md-6">
-          <label>Sélectionner une catégorie </label>
-          <select class="form-control" formControlName="categorie" >
-            <option>Romans</option>
-            <option>Comics</option>
-            <option>Livres de cuisine </option>
-            <option>livres de jeunesses</option>
-            <option>lettre</option>
-            <option>Droits</option>
-
-          </select>
-        </div>
+        
 
       </div>
     </form>
   </div>
 </div>
+
 <ng-container *ngIf="!hidden">
   <div *ngFor="let l of publication | myfilter : filtertext ">
-    <div class="card">
+    <div class="card" style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 650px;
+    margin: auto;
+    text-align: center;
+    border-radius: 5%;">
       <div class="card-body">
         <div class="row">
           <div class="col-md-4">
-            <img style="width: 75%;" src="../assets/exemple.jpg"></div>
+            <img style="width:100%;" src="../assets/apprendre.jpg"></div>
           <div class="col-md-8">
-            <h5 class="card-title">{{l.titrelivre}} </h5>
-            <div class="card-text">
-              <p>Auteur : {{l.auteur}}</p>
+              <h5 style="color: coral">Les détais des publications</h5>
+              <div style="font-size: 100%; text-align: left">
+                Titre du livre : {{l.titrelivre}}<br>
+                Auteur: {{l.auteur}}<br>
+                Catégorie : {{l.categorie}}<br>
+                Langue : {{l.langue}}<br>
+                Adresse : {{l.adresse}}<br>
+                Ville : {{l.ville}}<br>
+                Code Postale : {{l.code_postale}}<br>
+                Edition : {{l.edition}}<br>
+                Déscription : {{l.description}}<br>
 
-              <p>Langue : {{l.langue}}</p>
-              <p>Catégorie : {{l.categorie}}</p>
-              <p>Adresse : {{l.adresse}}</p>
-              <a href="">Voir les détails</a>
             </div>
           </div>
         </div>
@@ -55,7 +53,7 @@
       <div class="card-footer bg-transparent border-info footer-text">dernière modification le 25 juin 2019</div>
 
     </div>
-
+<br><br>
 
   </div>
  

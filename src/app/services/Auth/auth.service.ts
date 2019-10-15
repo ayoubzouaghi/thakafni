@@ -36,12 +36,10 @@ export class AuthService {
   ) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        console.log('test1', user.uid)
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
       } else {
-        console.log('testt2')
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));
       }
@@ -277,6 +275,7 @@ export class AuthService {
   }
 
   updateUser(user) {
+
     this.userCollection.doc(user.uid).update({
       nom:user.nom,
       prenom:user.prenom,

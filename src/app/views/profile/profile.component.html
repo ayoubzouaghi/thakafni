@@ -2,10 +2,7 @@
 
 <div class="row">
   <div class="col-md-3">
-    <div class="row" *ngIf="authService.userData as user">
-
-
-
+    <div *ngIf="authService.userData as user">
       <div class="card ">
         <img src="../assets/avatar2.png" class="profile-img" style="height:180px;width: 100%;">
         <button class=" edit-picture-profile" (click)="openEditPictureModal()">Modifier</button>
@@ -26,77 +23,77 @@
       </div>
     </div>
   </div>
-  <div class="col-md-8">
-    <div *ngIf="authService.userData as user">
-      <div *ngFor="let list of publication">
 
-        <div class="container ">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card border-info mb-3 col-md-12">
-                <div class="card-header bg-transparent border-info">
-                  <div class="row">
-                    <div class="publication-type-design">
-                      {{list.type_annonce}}
-                    </div>
-                    <div class="icons">
-                      <img src="../assets/edit-interface-symbol-of-pencil-outline.png" class="edit-icon"
-                        (click)="openUpdatePubModal()">
-                      <img src="../assets/recycle-bin.png" class="delete-icon" (click)="openDeleteModal()"></div>
-                  </div>
-                </div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <img style="width: 100%;" src="../assets/exemple.jpg"></div>
-                    <div class="col-md-8">
-                      <!----<h5 class="card-title">{{list.titrelivre}} - {{list.auteur}}</h5>
+
+  <div class="col-md-8">
+    <div *ngFor="let list of publication">
+      <div class="row ">
+        <div class="col-md-12">
+          <div class="card border-info mb-3 col-md-12">
+            <div class="card-header bg-transparent border-info">
+              <div class="row">
+                <div class="publication-type-design" [innerHTML]="list.type_annonce"></div>
+                <div class="icons">
+                  <img src="../assets/edit-interface-symbol-of-pencil-outline.png" class="edit-icon"
+                    (click)="openUpdatePubModal(list)">
+                  <img src="../assets/recycle-bin.png" class="delete-icon" (click)="openDeleteModal()"></div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4">
+                  <img style="width: 100%;" src="../assets/apprendre.jpg"></div>
+                <div class="col-md-8">
+                  <!----<h5 class="card-title">{{list.titrelivre}} - {{list.auteur}}</h5>
                     <p>Langue : {{list.langue}}</p>
                     <p>Catégorie : {{list.categorie}}</p>
                     <p>Adresse : {{list.adresse}}</p>
                     <a (click)="openPubDetailmodal()">Voir les détails</a>
                   </div>!-->
-                      <h5 style="color: coral">Les détais des publications</h5>
-                      <div style="font-size: 100%; text-align: left">
-                        Titre du livre : {{list.titrelivre}}<br>
-                        Auteur: {{list.auteur}}<br>
-                        Catégorie : {{list.categorie}}<br>
-                        Langue : {{list.langue}}<br>
-                        Adresse : {{list.adresse}}<br>
-                        Ville : {{list.ville}}<br>
-                        Code Postale : {{list.code_postale}}<br>
-                        Edition : {{list.edition}}<br>
-                        Déscription : {{list.description}}<br>
+                  <h5 style="color: coral">Les détais des publications</h5>
+                  <div style="font-size: 100%; text-align: left">
+                    Titre du livre : {{list.titrelivre}}<br>
+                    Auteur: {{list.auteur}}<br>
+                    Catégorie : {{list.categorie}}<br>
+                    Langue : {{list.langue}}<br>
+                    Adresse : {{list.adresse}}<br>
+                    Ville : {{list.ville}}<br>
+                    Code Postale : {{list.code_postale}}<br>
+                    Edition : {{list.edition}}<br>
+                    Déscription : {{list.description}}<br>
 
-                      </div>
-                      <br>
-                    </div>
-                    <div class="card-footer bg-transparent border-info footer-text">dernière modification le 25 juin
-                      2019</div>
                   </div>
+                  <br>
                 </div>
+                <div class="card-footer bg-transparent border-info footer-text">dernière modification le 25 juin
+                  2019</div>
               </div>
-
             </div>
           </div>
+
         </div>
-
-        <section class="detail-page">
-          <div class="container mt-5">
-
-          </div>
-        </section>
-        <ng-template #deleteModal>
-          <app-delete-publication-modal [publication]="list" (delete)="onDelete(list)"></app-delete-publication-modal>
-        </ng-template>
-        <ng-template #updateModal>
-            <app-update-publication-modal [publication]="list" (update)="updatePublication(list)"></app-update-publication-modal>
-          </ng-template>
-
-          <ng-template #updateModalUser>
-              <app-edit-profil-coordonnee-modal  (delete)="updateUser(user)"></app-edit-profil-coordonnee-modal>
-            </ng-template>
-
-          
       </div>
+
+      <section class="detail-page">
+        <div class="container mt-5">
+
+        </div>
+      </section>
+
+      
+
+      
     </div>
+      <ng-template #deleteModal>
+        <app-delete-publication-modal [publication]="selectedPublication" (delete)="onDelete($event)"></app-delete-publication-modal>
+      </ng-template>
+      <ng-template #updateModal>
+        <app-update-publication-modal [publication]="selectedPublication" (update)="updatePublication($event)">
+        </app-update-publication-modal>
+      </ng-template>
+      
+      <ng-template #updateModalUser>
+        <app-edit-profil-coordonnee-modal [user]="user" (updateuser)="updateUser(user)">
+        </app-edit-profil-coordonnee-modal>
+      </ng-template>
+  </div>

@@ -16,8 +16,7 @@ import { AppComponent } from './app.component';
 // Import containers
 import { DefaultLayoutComponent } from './containers';
 
-import { P404Component } from './views/error/404.component';
-import { P500Component } from './views/error/500.component';
+
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
@@ -55,22 +54,22 @@ import { ProfileComponent } from './views/profile/profile.component';
 import { BooksService } from './services/books/books.service';
 import { PublicationService } from './services/publication/publication.service';
 import { ConfirmationComponent } from './views/confirmation/confirmation.component';
-import { EditProfilPictureModalComponent } from './edit-profil-picture-modal/edit-profil-picture-modal.component';
+import { EditProfilPictureModalComponent } from './views/edit-profil-picture-modal/edit-profil-picture-modal.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-import { EditProfilCoordonneeModalComponent } from './edit-profil-coordonnee-modal/edit-profil-coordonnee-modal.component';
-import { DeletePublicationModalComponent } from './delete-publication-modal/delete-publication-modal.component';
-import { PublicatinDetailsModalComponent } from './publicatin-details-modal/publicatin-details-modal.component';
-import { UpdatePublicationModalComponent } from './update-publication-modal/update-publication-modal.component';
+import { EditProfilCoordonneeModalComponent } from './views/edit-profil-coordonnee-modal/edit-profil-coordonnee-modal.component';
+import { DeletePublicationModalComponent } from './views/delete-publication-modal/delete-publication-modal.component';
+import { PublicatinDetailsModalComponent } from './views/publicatin-details-modal/publicatin-details-modal.component';
+import { UpdatePublicationModalComponent } from './views/update-publication-modal/update-publication-modal.component';
 import { ListeLivreDedonComponent } from './views/liste-livre-dedon/liste-livre-dedon.component';
-import { TousLesLivresComponent } from './tous-les-livres/tous-les-livres.component';
+import { TousLesLivresComponent } from './views/tous-les-livres/tous-les-livres.component';
 import { MessagingService } from './services/messaging.service';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { ChatComponent } from './views/chat/chat.component';
 import { ChatService } from './chat.service';
-import { AddDonComponent } from './add-don/add-don.component';
+import { AddDonComponent } from './views/add-don/add-don.component';
 import { MyfilterPipe } from './myfilter.pipe';
 import { FirstLayoutComponent } from './first-layout/first-layout.component';
-import { NouveauteComponent } from './nouveaute/nouveaute.component';
+import { NouveauteComponent } from './views/nouveaute/nouveaute.component';
 
 @NgModule({
   imports: [
@@ -100,8 +99,7 @@ import { NouveauteComponent } from './nouveaute/nouveaute.component';
   declarations: [
     AppComponent,
     ...APP_CONTAINERS,
-    P404Component,
-    P500Component,
+    
     LoginComponent,
     RegisterComponent,
     DepositComponent,

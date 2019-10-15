@@ -1,12 +1,15 @@
-<div class="app-body">
+<div class="app-body" style="background-image: url(../../assets/a.jpg);position:relative;">
   <main class="main d-flex align-items-center">
+
     <div class="container">
       <div class="row">
         <div class="col-md-6 mx-auto">
-          <div class="card mx-4">
+          <p style="text-align: center;color:burlywood;font-size: xx-large;font-style: Gras">THAKAFNI</p>
+
+          <div class="card mx-4" style="background-color:rgba(0,0,0,.4); ">
             <div class="card-body p-4">
               <form [formGroup]="loginform">
-                <h1>Se connecter</h1>
+                <h1 style="color: white">Se connecter</h1>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-user"></i></span>
@@ -14,7 +17,7 @@
                   <input type="email" class="form-control" placeholder="email" autocomplete="email"
                     formControlName="email">
                   <div *ngIf="submitted && loginform.email.errors" class="invalid-feedback">
-                    <div *ngIf="loginform.email.errors.required" class="validation-errors">Saisir votre email!</div>
+                    <div *ngIf="loginform.email.errors.required">Saisir votre email!</div>
                   </div>
                 </div>
                 <div class="input-group mb-4">
@@ -23,22 +26,23 @@
                   </div>
                   <input type="password" class="form-control" placeholder="Mot de passe" autocomplete="current-password"
                     formControlName="password">
-                </div>
-                <div *ngIf="submitted && loginform.password.errors" class="invalid-feedback">
-                  <div *ngIf="loginform.password.errors.required">Saisir votre email!</div>
-                </div>
-                <div class="row">
-                  <div class="col-6">
-                    <button type="submit" class="btn btn-primary px-4" (click)="Signin()">Connecter</button>
-                  </div>
-                  <p style="color: red">{{errorMessage}}</p>
-                  <div class="col-6 text-right">
-                    <button type="button" class="btn btn-link px-0" (click)="resetPassword()">Mot de passe
-                      oublié?</button>
-                  </div><br><br>
-                  <a routerLink='/register'>Inscrivez-vous gratuitement</a>
 
                 </div>
+                <button type="button" class="btn btn-link px-0" style="color: white" (click)="resetPassword()">Mot
+                  de passe
+                  oublié?</button>
+                <br>
+
+                <div class="row">
+                  <div class="col-6">
+                    <button type="submit" class="btn btn-primary px-4" [disabled]="loginform.valid" (click)="Signin()"
+                      style="position:relative; margin-left: 140px; width: 132px;">Se connecter</button>
+                  </div>
+                  <p style="color: red">{{errorMessage}}</p>
+                </div>
+                <br>
+                <a routerLink='/register' style="color: white; margin-left: 165px;">Inscrivez-vous</a>
+
               </form>
             </div>
           </div>

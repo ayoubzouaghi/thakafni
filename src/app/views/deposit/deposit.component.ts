@@ -9,6 +9,7 @@ import { Publication } from '../../Model/Publication.model';
 import { User } from '../../Model/User.model';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { navItems } from '../../_nav';
+import { AuthService } from '../../services/Auth/auth.service';
 
 
 @Component({
@@ -18,7 +19,8 @@ import { navItems } from '../../_nav';
 })
 export class DepositComponent implements OnInit {
   deposeform: FormGroup;
-
+  publication:Publication
+user:User
   pub: Publication[]
   booksSubscription: Subscription;
   list: Publication[]
@@ -26,16 +28,32 @@ export class DepositComponent implements OnInit {
   public sidebarMinimized = true;
   private changes: MutationObserver;
   public element: HTMLElement;
+  public userUid : any;
   constructor(
     private pubservice: PublicationService,
     private router: Router,
     public fb: FormBuilder,
     public firestore: AngularFirestore,
-  ) { }
+    public authserv: AuthService
+  ) { 
+    
+
+  }
 
   ngOnInit() {
-    this.submitBookForm();
+    this.authserv.afAuth.authState.subscribe((auth) => {
+      if(auth)
+      { this.publication.user_id = auth.uid;
+        console.log('auth', auth)
+        console.log(auth.uid)
 
+      }
+    })
+
+     this.submitBookForm();
+    
+  
+   
   }
 
 
@@ -56,12 +74,11 @@ export class DepositComponent implements OnInit {
 
 
 
-
     })
   }
   submitBook(user: User) {
     if (this.deposeform.valid) {
-
+console.log('form value', this.deposeform.value)
       // changer les attributs du modèle publication == formcontrolname
 
       this.pubservice.addPublication(this.deposeform.value);

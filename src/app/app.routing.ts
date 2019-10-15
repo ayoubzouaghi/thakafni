@@ -4,8 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 // Import Containers
 import { DefaultLayoutComponent } from './containers';
 
-import { P404Component } from './views/error/404.component';
-import { P500Component } from './views/error/500.component';
+
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { DepositComponent } from './views/deposit/deposit.component';
@@ -16,10 +15,10 @@ import { ProfileComponent } from './views/profile/profile.component';
 import { ConfirmationComponent } from './views/confirmation/confirmation.component';
 import { Profile } from 'selenium-webdriver/firefox';
 import { ListeLivreDedonComponent } from './views/liste-livre-dedon/liste-livre-dedon.component';
-import { TousLesLivresComponent } from './tous-les-livres/tous-les-livres.component';
+import { TousLesLivresComponent } from './views/tous-les-livres/tous-les-livres.component';
 import { ChatComponent } from './views/chat/chat.component';
 import { FirstLayoutComponent } from './first-layout/first-layout.component';
-import { NouveauteComponent } from './nouveaute/nouveaute.component';
+import { NouveauteComponent } from './views/nouveaute/nouveaute.component';
 
 export const routes: Routes = [
   {
@@ -134,7 +133,6 @@ export const routes: Routes = [
 
   },
 
-  { path: '**', component: P404Component }
 ];
 
 @NgModule({

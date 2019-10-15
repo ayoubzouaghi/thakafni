@@ -1,11 +1,14 @@
 
-<app-header class="header" [navbarBrandRouterLink]="['/first-layout']" [fixed]="true"
-    [navbarBrandFull]="{src: 'assets/img/brand/logo.svg', width: 89, height: 25, alt: 'CoreUI Logo'}"
-    [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'CoreUI Logo'}"
-    [sidebarToggler]="'lg'" [asideMenuToggler]="'lg'">
+ <!-- <app-header class="header" [navbarBrandRouterLink]="['/first-layout']" [fixed]="true"
+    [navbarBrandFull]="{src: 'assets/livre1.png', width: 100, height: 52, alt: 'THAKAFNI  Logo'}"
+    [sidebarToggler]="'lg'" [asideMenuToggler]="'lg'"> -->
+    <nav class="navbar navbar-expand-lg " style="width: 100%;height:60px; background-color: white;text-decoration : none">
+            <a  class="navbar-brand" href="/first-layout">
+                    <img src="assets/livre1.png" alt="Logo" style="width:40px;">
+                  </a>
     <link rel="manifest" href="/manifest.json">
-    <ul class="nav navbar-nav d-md-down-none" >
-        <li class="nav-item px-3">
+    <ul class="navbar-nav mr-auto ">
+        <li class="nav-item px-3"  >
             <a class="nav-link" href="/first-layout">Accueil</a>
         </li>
         <li class="nav-item px-3" (click)="Redirect()"> 
@@ -45,7 +48,7 @@
             <li class="nav-item dropdown" dropdown placement="bottom right">
               <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
                 dropdownToggle (click)="false" >
-                <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com" />
+                <img src="../assets/avatar2.png" class="img-avatar" style="width: 30px" alt="admin@bootstrapmaster.com" />
               </a>
               <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
         
@@ -55,12 +58,13 @@
               </div>
             </li>
           </ul>
-</app-header>
-<div class="body">
+</nav>
+
+<div class="body" >
 
 <!--Image avec barre de recherche-->
 <div class="row"  >
-    <img src="../../assets/img/image1.jpg" style="width:100%; padding: 8px; height: 320px;" class="img" >
+    <img src="../../assets/img/image1.jpg" style="width:100%;  height: 320px;" class="img" >
     <span style="margin-top: -253px; margin-left: 7%;color: white; font-size : 42px; font-weight: 700">THAKAFNI est là
         <br>
         pour faciliter vos lectures</span>
@@ -85,10 +89,10 @@
 </div>
 
 <!--Les deux boutons de déposer un livre et recherche-->
-<div class="row" style="padding: 34px">
+<div class="row" >
     <div class="card w-50">
         <div class="card-body">
-            <h5 class="card-title text-center">Déposer un livre</h5>
+            <h5 class="card-title text-center" (click)="Redirect()">Déposer un livre</h5>
             <p class="card-text text-center">DÉPOSEZ VOS LIVRES POUR L’ÉCHANGE, L’EMPRUNT OU LA VENTE À PROXIMITÉ</p>
             <img src="../../assets/img/arrow.svg"
                 style="width: 25px; height:25px;margin-left: 48%; margin-bottom: 4%;" (click)="Redirect()"><br>
@@ -97,7 +101,7 @@
 
     <div class="card w-50">
         <div class="card-body">
-            <h5 class="card-title text-center">Rechercher un livre</h5>
+            <h5 class="card-title text-center" (click)="openrecherche()">Rechercher un livre</h5>
             <p class="card-text text-center">RECHERCHER UN LIVRE POUR L’ÉCHANGE, L’EMPRUNT OU LA VENTE À PROXIMITÉ</p>
             <img src="../../assets/img/search.svg"
                 style="width: 25px; height:25px;margin-left: 48%; margin-bottom: 4%;" (click)="openrecherche()"><br>
@@ -179,7 +183,7 @@
                         Auteur : {{list.auteur}}<br>
                         Langue : {{list.langue}} <br>
                         Catégorie : {{list.categorie}}<br>
-                        Déscription: {{list.description}}<br><br>
+                        type d'annonce: {{list.type_annonce}}<br><br>
                         <button class="btn btn-primary">Contacter</button>
 
                     </p>
@@ -299,3 +303,7 @@
         </div>
     </div>
 </div></div>
+
+
+
+

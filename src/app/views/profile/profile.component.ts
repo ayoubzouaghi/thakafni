@@ -1,17 +1,13 @@
 import { Component, OnInit, Output, EventEmitter, OnChanges, SimpleChanges, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from '../../services/Auth/auth.service';
-import { User } from '../../Model/User.model';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Publication } from '../../Model/Publication.model';
 import { PublicationService } from '../../services/publication/publication.service';
 import { Upload } from '../../Model/Upload.model';
-import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EditProfilPictureModalComponent } from '../../edit-profil-picture-modal/edit-profil-picture-modal.component';
-import { EditProfilCoordonneeModalComponent } from '../../edit-profil-coordonnee-modal/edit-profil-coordonnee-modal.component';
-import { PublicatinDetailsModalComponent } from '../../publicatin-details-modal/publicatin-details-modal.component';
-import { UpdatePublicationModalComponent } from '../../update-publication-modal/update-publication-modal.component';
-import { DepositComponent } from '../deposit/deposit.component';
-import { BsModalRef } from 'ngx-bootstrap/modal/public_api';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { EditProfilPictureModalComponent } from '../edit-profil-picture-modal/edit-profil-picture-modal.component';
+import { PublicatinDetailsModalComponent } from '../publicatin-details-modal/publicatin-details-modal.component';
+import { User } from '../../Model/User.model';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -33,7 +29,7 @@ export class ProfileComponent implements OnInit, OnChanges {
   public imgSrc: string
   userData
   displayImg
-  user
+  public user ;
   publication: Publication[] = [];
   fileUploads: any[];
   public isLogged: Boolean;
@@ -42,7 +38,12 @@ export class ProfileComponent implements OnInit, OnChanges {
   id: Publication
   selectedFiles: FileList;
   currentFileUpload: Upload;
+
+  public selectedPublication: any;
   progress: { percentage: number } = { percentage: 0 };
+
+
+
   constructor(public authService: AuthService,
     public afs: AngularFirestore,
     private pubservice: PublicationService,
@@ -50,7 +51,7 @@ export class ProfileComponent implements OnInit, OnChanges {
     // this.user = JSON.parse(localStorage.getItem('user'));
 
     this.user = this.authService.afAuth.authState;
-
+      // console.log(this.authService.);
     this.user.subscribe((auth) => {
 
       if (auth) {
@@ -59,6 +60,12 @@ export class ProfileComponent implements OnInit, OnChanges {
 
 
         console.log('Connecté');
+        console.log(auth);
+        this.user = {
+          uid: auth.uid,
+          email: auth.email,
+          displayName: auth.displayName
+        }
 
 
 
@@ -79,19 +86,19 @@ export class ProfileComponent implements OnInit, OnChanges {
 
 
   ngOnInit() {
-    this.pubservice.getPublication().subscribe(actionArray => {
-      this.publication = actionArray.map(item => {
-        return {
-          uid: item.payload.doc.id,
-          ...item.payload.doc.data()
-        } as Publication;
-      })
-    });
+    // this.pubservice.getPublicationByUser()
+    this.pubservice.getPublication()
+      .subscribe(actionArray => {
+        this.publication = actionArray.map(item => {
+          return {
+            uid: item.payload.doc.id,
+            ...item.payload.doc.data()
+          } as Publication;
+        })
+      });
 
 
 
-    this.user = this.authService.getuserbyid()
-    console.log('ahal w sahla', this.user)
 
     // Use snapshotChanges().map() to store the key
     this.displayImg = this.authService.getUploads(0)
@@ -103,24 +110,24 @@ export class ProfileComponent implements OnInit, OnChanges {
 
     this.authService.getuserbyid();
   }
-  updatePublication(publication) {
-    console.log('updated largat=> ', publication);
+  updatePublication(publication: Publication) {
+    console.log(publication)
     this.pubservice.updatePub(publication);
     this.modalRefUpdate.close();
   }
 
 
-  updateUser(user) {
-    this.authService.updateUser(user);
+  updateUser(data) {
+    console.log(data)
+    this.authService.updateUser(data);
     this.modalRefUpdateUser.close()
   }
 
 
   onDelete(publication) {
-    console.log('delelted largat=> ', publication);
     this.pubservice.deletePub(publication);
     this.modalRefDelete.close();
-    // this.delete.emit(pub);
+    this.delete.emit(publication);
 
 
   }
@@ -149,8 +156,13 @@ export class ProfileComponent implements OnInit, OnChanges {
     modalRef.componentInstance.name = 'World';
   }
   public modalRefUpdate: NgbModalRef;
-  openUpdatePubModal() {
-    this.modalRefUpdate = this.modalService.open(this.updateModal, { size: 'lg' });
+  openUpdatePubModal(data: Publication) {
+
+    this.selectedPublication = data;
+
+    setTimeout(() => {
+      this.modalRefUpdate = this.modalService.open(this.updateModal, { size: 'lg' });
+    }, 300);
 
   }
   isLoggedIn() {

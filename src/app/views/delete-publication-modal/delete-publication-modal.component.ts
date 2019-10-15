@@ -33,28 +33,8 @@ export class DeletePublicationModalComponent implements OnInit {
   }
 
   onDelete(publication) {
-    // this.pubservice.deletePub(pub);
     this.delete.emit(publication)
 
   }
 }
-
-
-
-<div class="modal-header">
-    <h4 class="modal-title">Supprimer publication</h4>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-<div class="modal-body">
-    <p> Voulez vous vraiment supprimer cette publication?</p>
-
-    <div class="col-md-6">
-        <button class="btn btn-danger" (click)="onDelete(publication)">Supprimer</button>
-
-
-    </div>
-</div>
-
 

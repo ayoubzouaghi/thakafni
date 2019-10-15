@@ -1,0 +1,85 @@
+<div class="modal-header">
+  <h4 class="modal-title">Modifier votre publication</h4>
+
+</div>
+<div class="modal-body">
+  <form [formGroup]="modifform">
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label>Sélectionner une catégorie </label>
+        <select class="form-control" formControlName="categorie">
+          <option selected>{{publication.categorie}}</option>
+
+          <option>Romans</option>
+          <option>Comics</option>
+          <option>Livres de cuisine </option>
+          <option>livres de jeunesses</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="form-group col-md-6">
+        <label>Titre du livre</label>
+        <input type="text" class="form-control" formControlName="titrelivre" [value]="publication.titrelivre">
+
+      </div>
+      <div class="form-group col-md-6">
+        <label>Auteur du livre </label>
+        <input type="text" class="form-control" formControlName="auteur" [value]="publication.auteur">
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label>Edition du livre </label>
+        <input type="text" class="form-control" formControlName="edition" [value]="publication.edition">
+
+      </div>
+      <div class="form-group col-md-6">
+        <label>Type d'annonce</label>
+        <input type="text" class="form-control" formControlName="type_annonce" [value]="publication.type_annonce">
+
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="form-group col-md-6">
+        <label>Adresse </label>
+        <input type="text" class="form-control" formControlName="adresse" [value]="publication.adresse">
+      </div>
+      <div class="form-group col-md-6">
+        <label>Ville </label>
+        <input type="text" class="form-control" formControlName="ville" [value]="publication.ville">
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="form-group col-md-6">
+        <label>code postale </label>
+        <input type="text" class="form-control" formControlName="code_postale" value="{{publication.code_postale}}">
+      </div>
+      <div class="form-group col-md-6">
+
+        <div class="form-group">
+          <label>Langue</label>
+          <input type="text" class="form-control" formControlName="langue" value="{{publication.langue}}">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <label>Description</label>
+      <textarea class="form-control rounded-0" rows="10" formControlName="description"
+        value="{{publication.description}}"></textarea>
+    </div>
+    <br>
+
+    <div class="form-group upload-document-button">
+
+      <input type="file" name="image" placeholder="{{publication.image}}" />
+    </div>
+
+
+    <button type="submit" class="btn btn-success" (click)="updatePublication(publication)">Modifier</button>
+  </form>
+</div>

@@ -4,6 +4,7 @@ import { navItems } from '../../_nav';
 import * as firebase from 'firebase/app';
 import { AuthService } from '../../services/Auth/auth.service';
 import { MessagingService } from '../../services/messaging.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,7 +20,7 @@ public isLogged:boolean
   private changes: MutationObserver;
   public element: HTMLElement;
   user: any;
-  constructor( public authserv:AuthService,private messagingService: MessagingService) {
+  constructor( public authserv:AuthService,private messagingService: MessagingService,public router:Router) {
     this.user = this.authserv.afAuth.authState;
 
     this.user.subscribe((auth) => {
@@ -68,5 +69,21 @@ firebase.auth().onAuthStateChanged(
 }
   onSignOut(){
     return this.authserv.logout()
+  }
+  Redirect(){
+    if(this.isLogged==false){
+      this.router.navigate(['/login']);
+    }else{
+      this.router.navigate(['/deposit']);
+  
+    }
+  }
+  Redirect1(){
+    if(this.isLogged==false){
+      this.router.navigate(['/login']);
+    }else{
+      this.router.navigate(['/don']);
+  
+    }
   }
 }

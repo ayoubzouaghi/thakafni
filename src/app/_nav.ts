@@ -54,7 +54,7 @@ export const navItems: NavData[] = [
   {
     name: 'Don',
     url: '/don',
-    icon: 'icon-cursor',
+    icon: 'icon-plus',
 
   },
    

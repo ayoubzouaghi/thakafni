@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
     this.afAuth.authState.subscribe(user => {
       console.log(user);
       this.user = user;
+
     });
 
     this.router.events.subscribe((evt) => {
